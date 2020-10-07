@@ -214,6 +214,7 @@
                     </div>
                 @endif
             </div>
+<!--            
             <div class="form-group">
                 <label for="targetfile">
                     写真
@@ -231,13 +232,14 @@
                     </div>
                 @endif
             </div>
+-->
             <div class="form-group">
                 <label for="note">
                     メモ
                 </label>
                 <input
                     id="note"
-                    name="note"
+                   name="note"
                     class="form-control"
                     value="{{ $bruise->note }}"
                     type="text"
@@ -248,25 +250,56 @@
                     </div>
                 @endif
             </div>
-
-<!--
             <div class="form-group">
-                <label for="content">
-                    本文
+                <label for="image1">
+                    写真その１
+                </label><br><b>
+                <label for="image1">
+                {{ $bruise->image1 }}
+                </label></b>
+            </div>
+            <div class="form-group">
+                <label for="takeymd1">
+                    撮影日時その１
                 </label>
-                <textarea
-                    id="content"
-                    name="content"
+                <input
+                    id="takeymd1"
+                   name="takeymd1"
                     class="form-control"
-                    rows="4"
-                >{{ $bruise->hasseiyy }}</textarea>
-                @if ($errors->has('hasseiyy'))
+                    value="{{ $bruise->takeymd1 }}"
+                    type="text"
+                >
+                @if ($errors->has('takeymd1'))
                     <div class="text-danger">
-                        {{ $errors->first('hasseiyy') }}
+                        {{ $errors->first('takeymd1') }}
                     </div>
                 @endif
             </div>
--->
+            <div class="form-group">
+                <label for="image2">
+                    写真その２
+                </label><br><b>
+                <label for="image2">
+                {{ $bruise->image2 }}
+                </label></b>
+            </div>
+            <div class="form-group">
+                <label for="takeymd2">
+                    撮影日時その２
+                </label>
+                <input
+                    id="takeymd2"
+                   name="takeymd2"
+                    class="form-control"
+                    value="{{ $bruise->takeymd2 }}"
+                    type="text"
+                >
+                @if ($errors->has('takeymd2'))
+                    <div class="text-danger">
+                        {{ $errors->first('takeymd2') }}
+                    </div>
+                @endif
+            </div>
             
             <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showUpload') }}">

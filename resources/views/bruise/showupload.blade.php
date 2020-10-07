@@ -13,6 +13,10 @@
         <span>
             <form method="POST" action="{{ route('insUpload') }}" enctype="multipart/form-data">
               {{ csrf_field() }}
+              @if (session('err_msg'))
+                <p>{{ session('err_msg')}} 
+                </p>
+              @endif
               <label for="target">対象</label>
               <b>
               <input id="target" name="target" class="form-control" value="{{ old('target') }}"
@@ -54,7 +58,7 @@
                     キャンセル
                 </a>
                 <button type="submit" class="btn btn-primary">
-                    更新する
+                    投稿する
                 </button>
               </div>
             </form>

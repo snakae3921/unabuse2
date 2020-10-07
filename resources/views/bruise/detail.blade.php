@@ -55,11 +55,17 @@
                 15：臀部
               @endif
               </b></span><br>
-        <span>写真  <b>{{ $bruise->targetfile }}</b></span><br>
+<!--        <span>写真  <b>{{ $bruise->targetfile }}</b></span><br> -->
         <span>メモ  <b>{{ $bruise->note }}</b></span><br>
+        <span>写真その１  <b>{{ $bruise->image1 }}</b></span><br>
+        <span>撮影日時その１  <b>{{ $bruise->takeymd1 }}</b></span><br>
+        <span>写真その２  <b>{{ $bruise->image2 }}</b></span><br>
+        <span>撮影日時その２  <b>{{ $bruise->takeymd2 }}</b></span><br>
+
         <span>作成日  <b>{{ $bruise->created_at }}</b></span></br>
         <span>更新日  <b>{{ $bruise->updated_at }}</b></span></br>
         <span>
+<!--
             <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
               {{ csrf_field() }}
               <input type="file" id="file" name="file[]" class="form-control" multiple>
@@ -95,6 +101,12 @@
                 </button>
               </div>
             </form>
+-->
+              <div class="mt-5">
+                <a class="btn btn-secondary" href="{{ route('showList') }}">
+                    キャンセル
+                </a>
+              </div>
         </span>
 
 
