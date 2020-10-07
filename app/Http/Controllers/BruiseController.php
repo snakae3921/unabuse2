@@ -167,7 +167,7 @@ class BruiseController extends Controller
      * 
      * @return view
      * */
-    public function exeUpload(Request $request)
+    public function exeUpload(BruiseRequest $request)
     {
         logger('this is exeUpload');    
 
