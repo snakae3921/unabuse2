@@ -36,8 +36,8 @@
           @foreach($bruises as $bruise)
           <tr>
               <td>{{ $bruise->id }}</td>
-              <td>{{ $bruise->userid }}</td>
-              <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->target }}</a></td>
+              <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
+              <td>{{ $bruise->target }}</td>
               <td>{{ $bruise->age }}</td>
               <td>
               @if ($bruise->sex == 1)

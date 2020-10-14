@@ -251,8 +251,10 @@ class BruiseController extends Controller
 //        dd($inputs);
 
         $files = $request->file('file');
-//        dd($file);
-        if (!is_null($files)) {
+//        dd($files);
+        if (is_null($files)) {
+            \Session::flash('err_msg', 'ファイルを選択して下さい。');
+        } else {
             DB::beginTransaction();
             try {
                 // データを登録
@@ -309,8 +311,8 @@ class BruiseController extends Controller
                 DB::rollback();
                 abort(500);
             }
+            \Session::flash('err_msg', 'ファイルをアップロードしました。');
         }
-        \Session::flash('err_msg', 'ファイルをアップロードしました。');
         return redirect(route('showUpload'));
     }
 
