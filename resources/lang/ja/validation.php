@@ -144,8 +144,8 @@ return [
     */
 
     'attributes' => [
-        'userid'        => 'ユーザＩＤ',
-        'target'        => '対象',
+        'userid'        => 'ユーザ',
+        'target'        => 'どなたの',
         'age'           => '年齢',
         'sex'           => '性別',
         'hasseiyy'      => '発生年',
@@ -157,12 +157,12 @@ return [
         'element'       => '部位',
         'targetfile'    => '写真名',
         'note'          => 'コメント',
-        'image1'        => 'イメージ',
+        'image1'        => '写真',
         'oimagename1'   => '出力イメージ',
-        'takeymd1'      => '撮影日時',
-        'image2'        => 'イメージ２',
+        'takeymd1'      => 'コメント（撮影日時など）',
+        'image2'        => '写真',
         'oimagename2'   => '出力イメージ２',
-        'takeymd2'      => '撮影日時２',
+        'takeymd2'      => 'コメント（撮影日時など）',
     ],
 
 ];
