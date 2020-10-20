@@ -18,7 +18,7 @@
                 <p>{{ session('err_msg')}} 
                 </p>
               @endif
-              <label for="target">どなたの写真ですか</label>
+              <label for="target">どなたの</label>
               <b>
               <input id="target" name="target" class="form-control" value="{{ old('target') }}"
                       type="text" >
@@ -32,7 +32,7 @@
 
               <input type="file" id="file" name="file[]" class="form-control" multiple>
         
-              <label for="takeymd">写真へのコメント（撮影日時など）</label>
+              <label for="takeymd">写真へコメント（撮影日時など）</label>
               <b>
               <input id="takeymd1" name="takeymd1" class="form-control" value="{{ old('takeymd1') }}"
                       type="text" >
@@ -44,7 +44,7 @@
               @endif
               <br>
               <input type="file" id="file" name="file[]" class="form-control" multiple>
-              <label for="takeymd">写真へのコメント（撮影日時など）</label>
+              <label for="takeymd">写真へコメント（撮影日時など）</label>
               <b>
               <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
                       type="text" >
