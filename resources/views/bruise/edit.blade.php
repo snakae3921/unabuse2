@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'データ編集')
+@section('title', '更新する')
 @section('content')
 
 <header>
@@ -9,13 +9,13 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-        <h2>データ編集フォーム</h2>
+        <h2>付加する</h2>
         <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
         @csrf
             <input type="hidden" name="id" value="{{ $bruise->id }}">
             <div class="form-group">
-                <label for="userid">
-                    ユーザID
+            <label for="userid">
+                    ユーザ
                 </label>
                 <input
                     id="userid"
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="target">
-                    対象ID
+                    どなたの
                 </label>
                 <input
                     id="target"
@@ -47,6 +47,58 @@
                     </div>
                 @endif
             </div>
+
+            <div class="form-group">
+                <label for="image1">
+                    写真その１
+                </label><br><b>
+                <label for="image1">
+                {{ $bruise->image1 }}
+                </label></b>
+            </div>
+            <div class="form-group">
+                <label for="takeymd1">
+                コメント（撮影日時など）
+                </label>
+                <input
+                    id="takeymd1"
+                   name="takeymd1"
+                    class="form-control"
+                    value="{{ $bruise->takeymd1 }}"
+                    type="text"
+                >
+                @if ($errors->has('takeymd1'))
+                    <div class="text-danger">
+                        {{ $errors->first('takeymd1') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="image2">
+                    写真その２
+                </label><br><b>
+                <label for="image2">
+                {{ $bruise->image2 }}
+                </label></b>
+            </div>
+            <div class="form-group">
+                <label for="takeymd2">
+                コメント（撮影日時など）
+                </label>
+                <input
+                    id="takeymd2"
+                   name="takeymd2"
+                    class="form-control"
+                    value="{{ $bruise->takeymd2 }}"
+                    type="text"
+                >
+                @if ($errors->has('takeymd2'))
+                    <div class="text-danger">
+                        {{ $errors->first('takeymd2') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="form-group">
                 <label for="age">
                     年齢
@@ -250,60 +302,13 @@
                     </div>
                 @endif
             </div>
-            <div class="form-group">
-                <label for="image1">
-                    写真その１
-                </label><br><b>
-                <label for="image1">
-                {{ $bruise->image1 }}
-                </label></b>
-            </div>
-            <div class="form-group">
-                <label for="takeymd1">
-                    撮影日時その１
-                </label>
-                <input
-                    id="takeymd1"
-                   name="takeymd1"
-                    class="form-control"
-                    value="{{ $bruise->takeymd1 }}"
-                    type="text"
-                >
-                @if ($errors->has('takeymd1'))
-                    <div class="text-danger">
-                        {{ $errors->first('takeymd1') }}
-                    </div>
-                @endif
-            </div>
-            <div class="form-group">
-                <label for="image2">
-                    写真その２
-                </label><br><b>
-                <label for="image2">
-                {{ $bruise->image2 }}
-                </label></b>
-            </div>
-            <div class="form-group">
-                <label for="takeymd2">
-                    撮影日時その２
-                </label>
-                <input
-                    id="takeymd2"
-                   name="takeymd2"
-                    class="form-control"
-                    value="{{ $bruise->takeymd2 }}"
-                    type="text"
-                >
-                @if ($errors->has('takeymd2'))
-                    <div class="text-danger">
-                        {{ $errors->first('takeymd2') }}
-                    </div>
-                @endif
-            </div>
             
             <div class="mt-5">
-                <a class="btn btn-secondary" href="{{ route('showUpload') }}">
-                    キャンセル
+                <a class="btn btn-secondary" href="{{ route('showList') }}">
+                    もどる
+                </a>
+                <a class="btn btn-secondary" href="{{$bruise->id}}">
+                    クリア
                 </a>
                 <button type="submit" class="btn btn-primary">
                     更新する

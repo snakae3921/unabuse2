@@ -27,7 +27,7 @@ class BruiseRequest extends FormRequest
         return [
             //
             'userid'        => 'required | string | max:100',
-            'target'        => 'required | string | max:100',
+            'target'        => 'nullable | string | max:100',
             'age'           => 'nullable | numeric | between:0,99',
             'sex'           => 'nullable | numeric | between:0,2',
             'hasseiyy'      => 'nullable | numeric | between:2000,2040',

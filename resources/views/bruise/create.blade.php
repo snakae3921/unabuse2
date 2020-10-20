@@ -10,7 +10,7 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
     <div class="col-md-8 col-md-offset-2">
-        <h2>データ投稿フォーム</h2>
+        <h2>投稿</h2>
         <form method="POST" action="{{ route('insert') }}" onSubmit="return checkSubmit()">
         @csrf
             <div class="form-group">
@@ -248,7 +248,7 @@
             </div>
             <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showUpload') }}">
-                    キャンセル
+                    もどる
                 </a>
                 <button type="submit" class="btn btn-primary">
                     投稿する

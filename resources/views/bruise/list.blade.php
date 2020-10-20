@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title', 'データ一覧')
+@section('title', '投稿ずみ')
 @section('content')
 
 <header>
@@ -10,7 +10,7 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-      <h2>データ記事一覧</h2>
+      <h2>投稿ずみ</h2>
       @if (session('err_msg'))
         <p>{{ session('err_msg')}} 
         </p>
@@ -18,8 +18,8 @@
       <table class="table table-striped">
           <tr>
               <th>#</th>
-              <th>ユーザID</th>
-              <th>対象ID</th>
+              <th>ユーザ</th>
+              <th>どなたの</th>
               <th>年齢</th>
               <th>性別</th>
               <th>発生年</th>
@@ -32,6 +32,7 @@
               <td>:</td>
               <th>分</th>
               <th>部位</th>
+              <th>　　　　</th>
           </tr>
           @foreach($bruises as $bruise)
           <tr>
@@ -88,10 +89,15 @@
                 15：臀部
               @endif
               </td>
-              <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">編集</button></td>
+              <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">付加</button></td>
           </tr>
           @endforeach
       </table>
+  <div class="mt-5">
+    <a class="btn btn-secondary" href="{{ route('showUpload') }}">
+        もどる
+    </a>
+  </div>
   </div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'データ詳細')
+@section('title', '写真投稿')
 @section('content')
 
 <header>
@@ -9,7 +9,8 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-    <h2>{{ $username }}</h2>
+    <h2>写真投稿</h2>
+    <h2>ユーザ：{{ $username }}</h2>
         <span>
             <form method="POST" action="{{ route('insUpload') }}" enctype="multipart/form-data">
               {{ csrf_field() }}
@@ -17,7 +18,7 @@
                 <p>{{ session('err_msg')}} 
                 </p>
               @endif
-              <label for="target">対象</label>
+              <label for="target">どなたの写真ですか</label>
               <b>
               <input id="target" name="target" class="form-control" value="{{ old('target') }}"
                       type="text" >
@@ -31,7 +32,7 @@
 
               <input type="file" id="file" name="file[]" class="form-control" multiple>
         
-              <label for="takeymd">撮影日時１</label>
+              <label for="takeymd">写真へのコメント（撮影日時など）</label>
               <b>
               <input id="takeymd1" name="takeymd1" class="form-control" value="{{ old('takeymd1') }}"
                       type="text" >
@@ -43,7 +44,7 @@
               @endif
               <br>
               <input type="file" id="file" name="file[]" class="form-control" multiple>
-              <label for="takeymd">撮影日時２</label>
+              <label for="takeymd">写真へのコメント（撮影日時など）</label>
               <b>
               <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
                       type="text" >
@@ -55,7 +56,7 @@
               @endif
               <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showUpload') }}">
-                    キャンセル
+                    クリア
                 </a>
                 <button type="submit" class="btn btn-primary">
                     投稿する
@@ -63,9 +64,6 @@
               </div>
             </form>
         </span>
-
-
-
         </p>
   </div>
 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'データ詳細')
+@section('title', '詳細')
 @section('content')
 
 <header>
@@ -9,9 +9,18 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-    <h2>{{ $bruise->id }}    {{ $bruise->userid }}    {{ $bruise->target }}</h2>
-        <p><span>年齢  <b>{{ $bruise->age }}</b></span>
-        <span>性別  <b>
+  <h2>詳細</h2>
+      <p>
+      <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
+      <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
+
+      <span>投稿写真その１  <b>{{ $bruise->image1 }}</b></span><br>
+        <span>コメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
+        <span>投稿写真その２  <b>{{ $bruise->image2 }}</b></span><br>
+        <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br>
+
+      <span>年齢    <b>{{ $bruise->age }}</b></span>
+        <span>性別    <b>
             @if ($bruise->sex == 1)
                   01：男性
             @elseif ($bruise->sex == 2)
@@ -19,10 +28,10 @@
             @endif
             </b>
         </span><br>
-        <span>発生日  <b>20{{ $bruise->hasseiyy }}/{{ $bruise->hasseimm }}/
+        <span>発生日    <b>{{ $bruise->hasseiyy }}/{{ $bruise->hasseimm }}/
         {{ $bruise->hasseidd }}  {{ $bruise->hasseihh }}:{{ $bruise->hasseimi }}</b></span><br>
-        <span>原因  <b>{{ $bruise->factor }}</b></span><br>
-        <span>部位  <b>
+        <span>原因    <b>{{ $bruise->factor }}</b></span><br>
+        <span>部位    <b>
               @if ($bruise->element == 1)
                 01：頭
               @elseif ($bruise->element == 2)
@@ -56,14 +65,9 @@
               @endif
               </b></span><br>
 <!--        <span>写真  <b>{{ $bruise->targetfile }}</b></span><br> -->
-        <span>メモ  <b>{{ $bruise->note }}</b></span><br>
-        <span>写真その１  <b>{{ $bruise->image1 }}</b></span><br>
-        <span>撮影日時その１  <b>{{ $bruise->takeymd1 }}</b></span><br>
-        <span>写真その２  <b>{{ $bruise->image2 }}</b></span><br>
-        <span>撮影日時その２  <b>{{ $bruise->takeymd2 }}</b></span><br>
-
-        <span>作成日  <b>{{ $bruise->created_at }}</b></span></br>
-        <span>更新日  <b>{{ $bruise->updated_at }}</b></span></br>
+        <span>メモ    <b>{{ $bruise->note }}</b></span><br>
+        <span>作成日    <b>{{ $bruise->created_at }}</b></span></br>
+        <span>更新日    <b>{{ $bruise->updated_at }}</b></span></br>
         <span>
 <!--
             <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
@@ -104,13 +108,10 @@
 -->
               <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showList') }}">
-                    キャンセル
+                    もどる
                 </a>
               </div>
         </span>
-
-
-
         </p>
   </div>
 </div>
