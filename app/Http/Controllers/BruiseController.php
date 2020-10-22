@@ -24,13 +24,13 @@ class BruiseController extends Controller
      * @return view
      * */
     public function showList(Request $request){
-        logger('this is showList');    
+//        logger('this is showList');    
         $user = \Auth::user();
 //        dd($user->name);
 //        dd($user);
          // テーブルを指定
         $bruises = DB::table('bruises');
-        logger($user->name);    
+//        logger($user->name);    
 	    $bruise = $bruises->where('userid', '=', $user->name)->get();
 //        $bruises = Bruise::all();
 //        dd($bruises);
@@ -42,7 +42,7 @@ class BruiseController extends Controller
      * @return view
      * */
     public function showDetail($id){
-        logger('this is showDetail');    
+//        logger('this is showDetail');    
 
         $bruise = Bruise::find($id);
 //$bruises = DB::table('bruises');
@@ -54,7 +54,14 @@ class BruiseController extends Controller
         // 存在しないnullだ
            session()->put('id', $id);
         }
-//        logger('id' );    
+
+        $user = \Auth::user();
+        // url直節入力しての他のユーザの参照はできない
+        if (!($user->name == $bruise->userid)) {
+//            logger('this is error');    
+            \Session::flash('err_msg','ユーザが正しくありません。');
+            return redirect(route('showList'));
+        }
 
         if (is_null($bruise)){
             \Session::flash('err_msg','データがありません。');
@@ -69,7 +76,7 @@ class BruiseController extends Controller
      * */
     public function showCreate(){
 //        dd($bruises);
-        logger('this is showCreate');    
+//        logger('this is showCreate');    
 
 //        return view('bruise.create');
         $user = \Auth::user();
@@ -85,17 +92,17 @@ class BruiseController extends Controller
      * @return view
      * */
     public function exeInsert(BruiseRequest $request){
-        logger('this is exeInsert');    
+//        logger('this is exeInsert');    
         $inputs = $request->all();
 //        dd($inputs);
         DB::beginTransaction();
         try {
             // データを登録
             Bruise::create($inputs);
-            logger('create after');    
+//            logger('create after');    
             //            dd($inputs);
             DB::commit();
-            logger('commit after');    
+//            logger('commit after');    
         } catch(\Throwable $e) {
             DB::rollback();
             abort(500);
@@ -109,7 +116,7 @@ class BruiseController extends Controller
      * @return view
      * */
     public function showEdit($id){
-        logger('this is showEdit');    
+//        logger('this is showEdit');    
 
         // セッションへデータを保存する
         if (!session()->has('id')) {
@@ -117,6 +124,13 @@ class BruiseController extends Controller
                session()->put('id', $id);
         }
         $bruise = Bruise::find($id);
+        $user = \Auth::user();
+        // url直節入力しての他のユーザの参照はできない
+        if (!($user->name == $bruise->userid)) {
+//            logger('this is error');    
+            \Session::flash('err_msg','ユーザが正しくありません。');
+            return redirect(route('showList'));
+        }
 //$bruise = $bruises::find($id);
 //dd($bruise);
         if (is_null($bruise)){
@@ -131,7 +145,7 @@ class BruiseController extends Controller
      * @return view
      * */
     public function exeUpdate(BruiseRequest $request){
-        logger('this is exeUpdate');    
+//        logger('this is exeUpdate');    
         $inputs = $request->all();
 //dd($inputs);
         DB::beginTransaction();
@@ -170,7 +184,7 @@ class BruiseController extends Controller
      * */
     public function exeUpload(BruiseRequest $request)
     {
-        logger('this is exeUpload');    
+//        logger('this is exeUpload');    
 
         $inputs = $request->all();
 //        dd($inputs);
@@ -243,7 +257,7 @@ class BruiseController extends Controller
      * */
     public function insUpload(Request $request)
     {
-        logger('this is insUpload'); 
+//        logger('this is insUpload'); 
         $bruise = new Bruise();   
         $user = \Auth::user();
         $username=$user->name;
@@ -323,7 +337,7 @@ class BruiseController extends Controller
      * */
     public function showUpload(){
         //        dd($bruises);
-                logger('this is showUpload');    
+//                logger('this is showUpload');    
         
         //        return view('bruise.showUpload');
                 $user = \Auth::user();

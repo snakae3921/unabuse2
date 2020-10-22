@@ -11,18 +11,28 @@
 <div class="col-md-8 col-md-offset-2">
         <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
         @csrf
-            <input type="hidden" name="id" value="{{ $bruise->id }}">
+            <input type="hidden" name="id" value="{{ $bruise->id }}" >
             <div class="form-group">
             <label for="userid">
                     ユーザ
                 </label>
-                <input
-                    id="userid"
-                    name="userid"
-                    class="form-control"
-                    value="{{ $bruise->userid }}"
-                    type="text"
-                >
+                @if ($errors->has('userid'))
+                    <input
+                        id="userid"
+                        name="userid"
+                        class="form-control"
+                        value="{{ old('userid') }}"
+                        type="text" readonly
+                    >
+                @else
+                    <input
+                        id="userid"
+                        name="userid"
+                        class="form-control"
+                        value="{{ $bruise->userid }}"
+                        type="text" readonly
+                    >
+                @endif
                 @if ($errors->has('userid'))
                     <div class="text-danger">
                         {{ $errors->first('userid') }}
@@ -33,13 +43,23 @@
                 <label for="target">
                     どなたの
                 </label>
-                <input
-                    id="target"
-                    name="target"
-                    class="form-control"
-                    value="{{ $bruise->target }}"
-                    type="text"
-                >
+                @if ($errors->has('target'))
+                    <input
+                        id="target"
+                        name="target"
+                        class="form-control"
+                        value="{{ old('target') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="target"
+                        name="target"
+                        class="form-control"
+                        value="{{ $bruise->target }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('target'))
                     <div class="text-danger">
                         {{ $errors->first('target') }}
@@ -59,13 +79,23 @@
                 <label for="takeymd1">
                 コメント（撮影日時など）
                 </label>
-                <input
-                    id="takeymd1"
-                   name="takeymd1"
-                    class="form-control"
-                    value="{{ $bruise->takeymd1 }}"
-                    type="text"
-                >
+                @if ($errors->has('takeymd1'))
+                    <input
+                        id="takeymd1"
+                        name="takeymd1"
+                        class="form-control"
+                        value="{{ old('takeymd1') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="takeymd1"
+                        name="takeymd1"
+                        class="form-control"
+                        value="{{ $bruise->takeymd1 }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('takeymd1'))
                     <div class="text-danger">
                         {{ $errors->first('takeymd1') }}
@@ -84,31 +114,50 @@
                 <label for="takeymd2">
                 コメント（撮影日時など）
                 </label>
-                <input
-                    id="takeymd2"
-                   name="takeymd2"
-                    class="form-control"
-                    value="{{ $bruise->takeymd2 }}"
-                    type="text"
-                >
+                @if ($errors->has('takeymd2'))
+                    <input
+                        id="takeymd2"
+                        name="takeymd2"
+                        class="form-control"
+                        value="{{ old('takeymd2') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="takeymd2"
+                        name="takeymd2"
+                        class="form-control"
+                        value="{{ $bruise->takeymd2 }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('takeymd2'))
                     <div class="text-danger">
                         {{ $errors->first('takeymd2') }}
                     </div>
                 @endif
             </div>
-
             <div class="form-group">
                 <label for="age">
                     年齢
                 </label>
-                <input
-                    id="age"
-                    name="age"
-                    class="form-control"
-                    value="{{ $bruise->age }}"
-                    type="text"
-                >
+                @if ($errors->has('age'))
+                    <input
+                        id="age"
+                        name="age"
+                        class="form-control"
+                        value="{{ old('age') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="age"
+                        name="age"
+                        class="form-control"
+                        value="{{ $bruise->age }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('age'))
                     <div class="text-danger">
                         {{ $errors->first('age') }}
@@ -125,7 +174,6 @@
                 '01：男性',
                 '02：女性'
                 ], $bruise->sex)}}
-
                 @if ($errors->has('sex'))
                     <div class="text-danger">
                         {{ $errors->first('sex') }}
@@ -136,13 +184,23 @@
                 <label for="hasseiyy">
                     発生年
                 </label>
-                <input
-                    id="hasseiyy"
-                    name="hasseiyy"
-                    class="form-control"
-                    value="{{ $bruise->hasseiyy }}"
-                    type="text"
-                >
+                @if ($errors->has('hasseiyy'))
+                    <input
+                        id="hasseiyy"
+                        name="hasseiyy"
+                        class="form-control"
+                        value="{{ old('hasseiyy') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="hasseiyy"
+                        name="hasseiyy"
+                        class="form-control"
+                        value="{{ $bruise->hasseiyy }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('hasseiyy'))
                     <div class="text-danger">
                         {{ $errors->first('hasseiyy') }}
@@ -153,13 +211,23 @@
                 <label for="hasseimm">
                     発生月
                 </label>
-                <input
-                    id="hasseimm"
-                    name="hasseimm"
-                    class="form-control"
-                    value="{{ $bruise->hasseimm }}"
-                    type="text"
-                >
+                @if ($errors->has('hasseimm'))
+                    <input
+                        id="hasseimm"
+                        name="hasseimm"
+                        class="form-control"
+                        value="{{ old('hasseimm') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="hasseimm"
+                        name="hasseimm"
+                        class="form-control"
+                        value="{{ $bruise->hasseimm }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('hasseimm'))
                     <div class="text-danger">
                         {{ $errors->first('hasseimm') }}
@@ -170,13 +238,23 @@
                 <label for="hasseidd">
                     発生日
                 </label>
-                <input
-                    id="hasseidd"
-                    name="hasseidd"
-                    class="form-control"
-                    value="{{ $bruise->hasseidd }}"
-                    type="text"
-                >
+                @if ($errors->has('hasseidd'))
+                    <input
+                        id="hasseidd"
+                        name="hasseidd"
+                        class="form-control"
+                        value="{{ old('hasseidd') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="hasseidd"
+                        name="hasseidd"
+                        class="form-control"
+                        value="{{ $bruise->hasseidd }}"
+                        type="text"
+                    >
+                @endif    
                 @if ($errors->has('hasseidd'))
                     <div class="text-danger">
                         {{ $errors->first('hasseidd') }}
@@ -187,13 +265,23 @@
                 <label for="hasseihh">
                     発生時
                 </label>
-                <input
-                    id="hasseihh"
-                    name="hasseihh"
-                    class="form-control"
-                    value="{{ $bruise->hasseihh }}"
-                    type="text"
-                >
+                @if ($errors->has('hasseihh'))
+                    <input
+                        id="hasseihh"
+                        name="hasseihh"
+                        class="form-control"
+                        value="{{ old('hasseihh') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="hasseihh"
+                        name="hasseihh"
+                        class="form-control"
+                        value="{{ $bruise->hasseihh }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('hasseihh'))
                     <div class="text-danger">
                         {{ $errors->first('hasseihh') }}
@@ -204,13 +292,23 @@
                 <label for="hasseimi">
                     発生分
                 </label>
-                <input
-                    id="hasseimi"
-                    name="hasseimi"
-                    class="form-control"
-                    value="{{ $bruise->hasseimi }}"
-                    type="text"
-                >
+                @if ($errors->has('hasseimi'))
+                    <input
+                        id="hasseimi"
+                        name="hasseimi"
+                        class="form-control"
+                        value="{{ old('hasseimi') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="hasseimi"
+                        name="hasseimi"
+                        class="form-control"
+                        value="{{ $bruise->hasseimi }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('hasseimi'))
                     <div class="text-danger">
                         {{ $errors->first('hasseimi') }}
@@ -221,13 +319,23 @@
                 <label for="factor">
                     原因
                 </label>
-                <input
-                    id="factor"
-                    name="factor"
-                    class="form-control"
-                    value="{{ $bruise->factor }}"
-                    type="text"
-                >
+                @if ($errors->has('factor'))
+                    <input
+                        id="factor"
+                        name="factor"
+                        class="form-control"
+                        value="{{ old('factor') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="factor"
+                        name="factor"
+                        class="form-control"
+                        value="{{ $bruise->factor }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('factor'))
                     <div class="text-danger">
                         {{ $errors->first('factor') }}
@@ -288,13 +396,23 @@
                 <label for="note">
                     メモ
                 </label>
-                <input
-                    id="note"
-                   name="note"
-                    class="form-control"
-                    value="{{ $bruise->note }}"
-                    type="text"
-                >
+                @if ($errors->has('note'))
+                    <input
+                        id="note"
+                        name="note"
+                        class="form-control"
+                        value="{{ old('note') }}"
+                        type="text"
+                    >
+                @else
+                    <input
+                        id="note"
+                        name="note"
+                        class="form-control"
+                        value="{{ $bruise->note }}"
+                        type="text"
+                    >
+                @endif
                 @if ($errors->has('note'))
                     <div class="text-danger">
                         {{ $errors->first('note') }}
