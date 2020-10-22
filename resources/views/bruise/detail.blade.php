@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '詳細')
+@section('title', '　投稿の詳細です')
 @section('content')
 
 <header>
@@ -9,8 +9,6 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-  <h2>詳細</h2>
-      <p>
       <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
       <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
 

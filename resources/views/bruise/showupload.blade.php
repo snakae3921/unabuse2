@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '写真投稿')
+@section('title', '　写真を投稿します')
 @section('content')
 
 <header>
@@ -9,7 +9,6 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-    <h2>写真投稿</h2>
     <h2>ユーザ：{{ $username }}</h2>
         <span>
             <form method="POST" action="{{ route('insUpload') }}" enctype="multipart/form-data">

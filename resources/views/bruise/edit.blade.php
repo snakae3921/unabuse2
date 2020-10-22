@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '更新する')
+@section('title', '　投稿に付加する')
 @section('content')
 
 <header>
@@ -9,7 +9,6 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-        <h2>付加する</h2>
         <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
         @csrf
             <input type="hidden" name="id" value="{{ $bruise->id }}">
@@ -311,7 +310,7 @@
                     クリア
                 </a>
                 <button type="submit" class="btn btn-primary">
-                    更新する
+                    付加する
                 </button>
             </div>
         </form>

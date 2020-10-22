@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-@section('title', '投稿ずみ')
+@section('title', '　過去の投稿です')
 @section('content')
 
 <header>
@@ -10,7 +10,6 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-      <h2>投稿ずみ</h2>
       @if (session('err_msg'))
         <p>{{ session('err_msg')}} 
         </p>
