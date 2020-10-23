@@ -28,10 +28,14 @@
                   </div>
               @endif
               <br>
-
               <input type="file" id="file" name="file[]" class="form-control" multiple>
-        
-              <label for="takeymd">写真へコメント（撮影日時など）</label>
+              @if ($errors->has('file1'))
+                  <div class="text-danger">
+                  {{ $errors->first('file1') }}
+                  </div>
+              @endif
+              <br>
+              <label for="takeymd">写真１へコメント（撮影日時など）</label>
               <b>
               <input id="takeymd1" name="takeymd1" class="form-control" value="{{ old('takeymd1') }}"
                       type="text" >
@@ -43,7 +47,13 @@
               @endif
               <br>
               <input type="file" id="file" name="file[]" class="form-control" multiple>
-              <label for="takeymd">写真へコメント（撮影日時など）</label>
+              @if ($errors->has('file2'))
+                  <div class="text-danger">
+                  {{ $errors->first('file2') }}
+                  </div>
+              @endif
+              <br>
+              <label for="takeymd">写真２へコメント（撮影日時など）</label>
               <b>
               <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
                       type="text" >

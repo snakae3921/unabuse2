@@ -23,7 +23,7 @@ class BruiseRequest extends FormRequest
      */
     public function rules()
     {
-        logger('this is rules');    
+//        logger('this is rules');    
         return [
             //
             'userid'        => 'required | string | max:100',
@@ -35,16 +35,16 @@ class BruiseRequest extends FormRequest
             'hasseidd'      => 'nullable | numeric | between:1,31',
             'hasseihh'      => 'nullable | numeric | between:0,24',
             'hasseimi'      => 'nullable | numeric | between:0,59',
-            'factor'        => 'nullable | string',
+            'factor'        => 'nullable | string | max:125',
             'element'       => 'nullable | numeric | between:0,15',
-            'targetfile'    => 'nullable | string ',
-            'note'          => 'nullable | string ',
-            'image1'        => 'nullable | image',
+            'targetfile'    => 'nullable | string | max:125',
+            'note'          => 'nullable | string  | max:125',
+            'file1'         => 'nullable | image',
             'oimagename1'   => 'nullable | string',
-            'takeymd1'      => 'nullable | string',
-            'image2'        => 'nullable | image',
+            'takeymd1'      => 'nullable | string | max:125',
+            'file2'         => 'nullable | image',
             'oimagename2'   => 'nullable | string',
-            'takeymd2'      => 'nullable | string',
+            'takeymd2'      => 'nullable | string | max:125',
         ];
     }
 }

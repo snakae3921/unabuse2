@@ -12,9 +12,9 @@
       <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
       <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
 
-      <span>投稿写真その１  <b>{{ $bruise->image1 }}</b></span><br>
+      <span>投稿写真その１  <b>{{ $bruise->file1 }}</b></span><br>
         <span>コメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
-        <span>投稿写真その２  <b>{{ $bruise->image2 }}</b></span><br>
+        <span>投稿写真その２  <b>{{ $bruise->file2 }}</b></span><br>
         <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br>
 
       <span>年齢    <b>{{ $bruise->age }}</b></span>

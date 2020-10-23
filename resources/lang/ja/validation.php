@@ -157,12 +157,12 @@ return [
         'element'       => '部位',
         'targetfile'    => '写真名',
         'note'          => 'コメント',
-        'image1'        => '写真',
+        'file1'        => '写真1',
         'oimagename1'   => '出力イメージ',
-        'takeymd1'      => 'コメント（撮影日時など）',
-        'image2'        => '写真',
+        'takeymd1'      => 'コメント1（撮影日時など）',
+        'file2'        => '写真2',
         'oimagename2'   => '出力イメージ２',
-        'takeymd2'      => 'コメント（撮影日時など）',
+        'takeymd2'      => 'コメント2（撮影日時など）',
     ],
 
 ];

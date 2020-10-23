@@ -27,10 +27,10 @@ class bruise extends Model
         'element',
         'targetfile',
         'note',
-        'image1',
+        'file1',
         'oimagename1',
         'takeymd1',
-        'image2',
+        'file2',
         'oimagename2',
         'takeymd2',
     ];

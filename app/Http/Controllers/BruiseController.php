@@ -226,14 +226,14 @@ class BruiseController extends Controller
                     if ($lcnt == 1){
                         $bruise->fill([
                             'targetfile'=>$fileName,
-                            'image1'=>$fname,
+                            'file1'=>$fname,
                             'oimagename1'=>$originalName,
                             'takeymd1'  =>$inputs['takeymd1'],
                             ]);
                     }elseif ($lcnt == 2){
                         $bruise->fill([
                             'targetfile'=>$fileName,
-                            'image2'=>$fname,
+                            'file2'=>$fname,
                             'oimagename2'=>$originalName,
                             'takeymd2'  =>$inputs['takeymd2'],
                         ]);
@@ -300,19 +300,15 @@ class BruiseController extends Controller
 
                     if ($lcnt == 1){
                         $bruise->fill([
-                            'image1'=>$originalName,
+                            'file1'=>$originalName,
                             'oimagename1'=>$fileName,
                             'takeymd1'  =>$inputs['takeymd1'],
                             ]);
                     }elseif ($lcnt == 2){
                         $bruise->fill([
-                            'image2'=>$originalName,
+                            'file2'=>$originalName,
                             'oimagename2'=>$fileName,
                             'takeymd2'  =>$inputs['takeymd2'],
-//                            'targetfile'=>$fileName,
-//                            'image2'=>$fname,
-//                            'oimagename2'=>$originalName,
-//                            'takeymd2'  =>$inputs['takeymd2'],
                         ]);
                     } 
                     $lcnt = $lcnt + 1;

@@ -16,7 +16,7 @@
             <label for="userid">
                     ユーザ
                 </label>
-                @if ($errors->has('userid'))
+                @if ($errors->any())
                     <input
                         id="userid"
                         name="userid"
@@ -43,7 +43,7 @@
                 <label for="target">
                     どなたの
                 </label>
-                @if ($errors->has('target'))
+                @if ($errors->any())
                     <input
                         id="target"
                         name="target"
@@ -68,18 +68,18 @@
             </div>
 
             <div class="form-group">
-                <label for="image1">
+                <label for="file1">
                     写真その１
                 </label><br><b>
-                <label for="image1">
-                {{ $bruise->image1 }}
+                <label for="file1">
+                {{ $bruise->file1 }}
                 </label></b>
             </div>
             <div class="form-group">
                 <label for="takeymd1">
                 コメント（撮影日時など）
                 </label>
-                @if ($errors->has('takeymd1'))
+                @if ($errors->any())
                     <input
                         id="takeymd1"
                         name="takeymd1"
@@ -103,18 +103,18 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="image2">
+                <label for="file2">
                     写真その２
                 </label><br><b>
-                <label for="image2">
-                {{ $bruise->image2 }}
+                <label for="file2">
+                {{ $bruise->file2 }}
                 </label></b>
             </div>
             <div class="form-group">
                 <label for="takeymd2">
                 コメント（撮影日時など）
                 </label>
-                @if ($errors->has('takeymd2'))
+                @if ($errors->any())
                     <input
                         id="takeymd2"
                         name="takeymd2"
@@ -141,7 +141,7 @@
                 <label for="age">
                     年齢
                 </label>
-                @if ($errors->has('age'))
+                @if ($errors->any())
                     <input
                         id="age"
                         name="age"
@@ -158,7 +158,7 @@
                         type="text"
                     >
                 @endif
-                @if ($errors->has('age'))
+                @if ($errors->any())
                     <div class="text-danger">
                         {{ $errors->first('age') }}
                     </div>
@@ -184,7 +184,7 @@
                 <label for="hasseiyy">
                     発生年
                 </label>
-                @if ($errors->has('hasseiyy'))
+                @if ($errors->any())
                     <input
                         id="hasseiyy"
                         name="hasseiyy"
@@ -211,7 +211,7 @@
                 <label for="hasseimm">
                     発生月
                 </label>
-                @if ($errors->has('hasseimm'))
+                @if ($errors->any())
                     <input
                         id="hasseimm"
                         name="hasseimm"
@@ -238,7 +238,7 @@
                 <label for="hasseidd">
                     発生日
                 </label>
-                @if ($errors->has('hasseidd'))
+                @if ($errors->any())
                     <input
                         id="hasseidd"
                         name="hasseidd"
@@ -265,7 +265,7 @@
                 <label for="hasseihh">
                     発生時
                 </label>
-                @if ($errors->has('hasseihh'))
+                @if ($errors->any())
                     <input
                         id="hasseihh"
                         name="hasseihh"
@@ -292,7 +292,7 @@
                 <label for="hasseimi">
                     発生分
                 </label>
-                @if ($errors->has('hasseimi'))
+                @if ($errors->any())
                     <input
                         id="hasseimi"
                         name="hasseimi"
@@ -319,7 +319,7 @@
                 <label for="factor">
                     原因
                 </label>
-                @if ($errors->has('factor'))
+                @if ($errors->any())
                     <input
                         id="factor"
                         name="factor"
@@ -396,7 +396,7 @@
                 <label for="note">
                     メモ
                 </label>
-                @if ($errors->has('note'))
+                @if ($errors->any())
                     <input
                         id="note"
                         name="note"
