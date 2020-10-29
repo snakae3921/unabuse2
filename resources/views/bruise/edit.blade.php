@@ -74,7 +74,7 @@
                 <label for="file1">
                 {{ $bruise->file1 }}
                 </label></b>
-                    <img src="/images/300-300-{{$bruise->oimagename1}}"
+                    <img src="/storage/300-300-{{$bruise->id}}{{$bruise->file1}}"
                     alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                     width="60" height="60" >
 

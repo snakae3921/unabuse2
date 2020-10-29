@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Bruise;
 use App\Http\Requests\BruiseRequest;
 use Illuminate\Support\Facades\DB; // DB ファサードを use する
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class BruiseController extends Controller
 {
@@ -327,7 +329,19 @@ class BruiseController extends Controller
                     ->resize(300, 300)
 //                    ->save($dir.'/300-300-'.$fileName)
 //                    ->resize(500, 500)
-                    ->save(public_path().'/images/300-300-'.$hid.$originalName);
+                    ->save(public_path().'/storage/300-300-'.$hid.$originalName);
+//        dd($files);
+//$image::move(public_path().'/images/300-300-'.$hid.$originalName,
+//                public_path().'/images/300x-300x-'.$hid.$originalName);
+//                $dir.'/thumbnail/300-300-'.$hid.$originalName);
+$str = $dir.'/thumbnail/300-300-'.$hid.$originalName;
+$str = public_path().'/images/300-300-'.$hid.$originalName;
+$str = __DIR__;
+//dd($str);
+//rename(public_path().'/images/300-300-'.$hid.$originalName,
+//            '../');
+//'../../../storage/app/upFiles/thumbnail/300-300-'.$hid.$originalName);
+//public_path().'/images/300x-300x-'.$hid.$originalName);
    
 
 //        dd($files);
