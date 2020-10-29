@@ -327,7 +327,7 @@ class BruiseController extends Controller
                     ->resize(300, 300)
 //                    ->save($dir.'/300-300-'.$fileName)
 //                    ->resize(500, 500)
-                    ->save(public_path().'/images/300-300-'.$fileName);
+                    ->save(public_path().'/images/300-300-'.$hid.$originalName);
    
 
 //        dd($files);
