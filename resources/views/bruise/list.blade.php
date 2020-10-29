@@ -18,7 +18,9 @@
           <tr>
               <th>#</th>
               <th>ユーザ</th>
+              <th>投稿</th>
               <th>どなたの</th>
+              <th>写真のコメント</th>
               <th>年齢</th>
               <th>性別</th>
               <th>発生年</th>
@@ -35,8 +37,12 @@
           </tr>
           @foreach($bruises as $bruise)
           <tr>
-              <td>{{ $bruise->id }}</td>
+          <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">付加</button></td>
+<!--              <td>{{ $bruise->id }}</td> -->
               <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
+              <td><img src="/images/300-300-{{$bruise->oimagename1}}"
+               alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
+               width="60" height="60" ></td>
               <td>{{ $bruise->target }}</td>
               <td>{{ $bruise->age }}</td>
               <td>
@@ -88,7 +94,6 @@
                 15：臀部
               @endif
               </td>
-              <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">付加</button></td>
           </tr>
           @endforeach
       </table>

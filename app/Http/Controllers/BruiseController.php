@@ -31,7 +31,9 @@ class BruiseController extends Controller
          // テーブルを指定
         $bruises = DB::table('bruises');
 //        logger($user->name);    
-	    $bruise = $bruises->where('userid', '=', $user->name)->get();
+        $bruise = $bruises->where('userid', '=', $user->name)
+        ->orderBy('id', 'desc')
+        ->get();
 //        $bruises = Bruise::all();
 //        dd($bruises);
         return view('bruise.list', ['bruises'=>$bruise]);
@@ -166,7 +168,7 @@ class BruiseController extends Controller
                 'element'  =>$inputs['element'],
                 'note'     =>$inputs['note'],
                 'takeymd1'     =>$inputs['takeymd1'],
-                'takeymd2'     =>$inputs['takeymd2'],
+//                'takeymd2'     =>$inputs['takeymd2'],
             ]);
             $bruise->save();
             DB::commit();
@@ -264,7 +266,16 @@ class BruiseController extends Controller
         $inputs = $request->all();
 //        dd($inputs);
 
-        $files = $request->file('file');
+        $validatedData = $request->validate([
+            'target'        => 'nullable | string | max:100',
+            'file1'         => 'required | image | max:5120',
+            'oimagename1'   => 'nullable | string',
+            'takeymd1'      => 'nullable | string | max:125',
+//            'file2'         => 'nullable | image | max:512',
+//            'oimagename2'   => 'nullable | string',
+//            'takeymd2'      => 'nullable | string | max:125',
+        ]);
+        $files = $inputs['file1'];
 //        dd($files);
         if (is_null($files)) {
             \Session::flash('err_msg', 'ファイルを選択して下さい。');
@@ -276,54 +287,68 @@ class BruiseController extends Controller
                     'userid'=>$username,
                     'target'=>$inputs['target'],
                 ]);
-                $lcnt = 1;
-                foreach($files as $file){
-                    $maxBruiseId = Bruise::max('id');
-                    $hid =$maxBruiseId + 1;
-                    $huserid =$username;
-                    $htarget =$inputs['target'];
-                    $helement ='00';
-                    $fname = $hid . '_' . $huserid . '_' . $htarget . '_' . $helement  . '_'; 
+                $maxBruiseId = Bruise::max('id');
+                $hid =$maxBruiseId + 1;
+                $huserid =$username;
+                $htarget =$inputs['target'];
+                $helement ='00';
+                $fname = $hid . '_' . $huserid . '_' . $htarget . '_' . $helement  . '_'; 
 //                    dd($bruise);
 
-                    date_default_timezone_set('Asia/Tokyo');
-                    $originalName = $file->getClientOriginalName();
-                    $filepath= pathinfo($originalName);
-                    $originalFilename =$filepath['filename'];
-                    $originalExtension =$filepath['extension'];
-                    $micro = explode(" ", microtime());
-                    $fileTail = date("Ymd_His", $micro[1]) . '_' . (explode('.', $micro[0])[1]);
+                date_default_timezone_set('Asia/Tokyo');
+                $originalName = $files->getClientOriginalName();
+                $filepath= pathinfo($originalName);
+                $originalFilename =$filepath['filename'];
+                $originalExtension =$filepath['extension'];
+                $micro = explode(" ", microtime());
+                $fileTail = date("Ymd_His", $micro[1]) . '_' . (explode('.', $micro[0])[1]);
+//                dd($bruise);
 
-                    $dir = 'upFiles';
-                    $fileName = $fname . $originalFilename . '_' . $fileTail . '.' . $originalExtension;
-                    $file->storeAs($dir, $fileName, ['disk' => 'local']);
+                $dir = 'upFiles';
+                $fileName = $fname . $originalFilename . '_' . $fileTail . '.' . $originalExtension;
+                $files->storeAs($dir, $fileName, ['disk' => 'local']);
+//                dd($bruise);
 
-                    if ($lcnt == 1){
-                        $bruise->fill([
-                            'file1'=>$originalName,
-                            'oimagename1'=>$fileName,
-                            'takeymd1'  =>$inputs['takeymd1'],
-                            ]);
-                    }elseif ($lcnt == 2){
-                        $bruise->fill([
-                            'file2'=>$originalName,
-                            'oimagename2'=>$fileName,
-                            'takeymd2'  =>$inputs['takeymd2'],
-                        ]);
-                    } 
-                    $lcnt = $lcnt + 1;
-                }
+                $bruise->fill([
+                    'file1'=>$originalName,
+                    'oimagename1'=>$fileName,
+                    'takeymd1'  =>$inputs['takeymd1'],
+                    ]);
                 // データを登録
 //                dd($bruise);
                 $bruise->save();
                 DB::commit();
+
+                //サムネイルの作成
+                $image = \Image::make(file_get_contents($files->getRealPath()));
+//                dd($image);
+                $image
+//                    ->save($dir .$fileName)
+                    ->resize(300, 300)
+//                    ->save($dir.'/300-300-'.$fileName)
+//                    ->resize(500, 500)
+                    ->save(public_path().'/images/300-300-'.$fileName);
+   
+
+//        dd($files);
+
+
+
             } catch(\Throwable $e) {
                 DB::rollback();
                 abort(500);
             }
             \Session::flash('err_msg', 'ファイルをアップロードしました。');
         }
-        return redirect(route('showUpload'));
+//        dd($files);
+
+        // セッションへデータを保存する
+        session()->put('id', $hid);
+
+return redirect(route('showUpload'));
+
+//return redirect(route('rtnUpload', ['id' => $hid]));
+//return view('bruise.rtnUpload')->with('id',$hid);
     }
 
 /**
@@ -339,9 +364,30 @@ class BruiseController extends Controller
                 $user = \Auth::user();
                 //dd($user);
                 $username=$user->name;
-                return view('bruise.showUpload')->with('username',$user->name);
-        
+                //セッションからidを取得する
+                $id = session()->pull('id', 'default');    
+                $bruise = Bruise::find($id);
+//                return view('bruise.showUpload')->with('username',$username,);
+                return view('bruise.showUpload')->with('username',$username,'bruise',$bruise,);
             }
+
+/**
+     * 投稿正常終了結果を表示する
+     * 
+     * @return view
+     * */
+    public function rtnUpload($id){
+        dd($id);
+        $bruise = Bruise::find($id);
+
+        return view('bruise.rtnUpload', [
+        'userid'=>$bruise->userid,
+        'target'=>$bruise->target,
+        'file1'=>$bruise->file1,
+        'oimagename1'=>$bruise->oimagename1,
+        'takeymd1'=>$bruise->takeymd1,
+                                        ]);
+
             
-        
+    }
 }

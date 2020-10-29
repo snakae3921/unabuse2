@@ -12,11 +12,16 @@
       <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
       <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
 
-      <span>投稿写真その１  <b>{{ $bruise->file1 }}</b></span><br>
+      <span>投稿写真その１  <b>{{ $bruise->file1 }}</b>
+        <img src="/images/300-300-{{$bruise->oimagename1}}"
+          alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
+          width="60" height="60" >
+      </span><br>
         <span>コメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
+<!--
         <span>投稿写真その２  <b>{{ $bruise->file2 }}</b></span><br>
         <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br>
-
+-->
       <span>年齢    <b>{{ $bruise->age }}</b></span>
         <span>性別    <b>
             @if ($bruise->sex == 1)

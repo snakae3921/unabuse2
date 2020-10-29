@@ -52,3 +52,5 @@ Route::get('/', [App\Http\Controllers\BruiseController::class, 'showUpload'])->n
 //　ファイルアップロード
 Route::post('/insUpload', [App\Http\Controllers\BruiseController::class, 'insUpload'])->name('insUpload');
 
+//　ファイルアップロード確認画面
+Route::get('/rtnUpload', [App\Http\Controllers\BruiseController::class, 'rtnUpload'])->name('rtnUpload');

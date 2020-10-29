@@ -74,6 +74,10 @@
                 <label for="file1">
                 {{ $bruise->file1 }}
                 </label></b>
+                    <img src="/images/300-300-{{$bruise->oimagename1}}"
+                    alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
+                    width="60" height="60" >
+
             </div>
             <div class="form-group">
                 <label for="takeymd1">
@@ -102,6 +106,7 @@
                     </div>
                 @endif
             </div>
+<!--            
             <div class="form-group">
                 <label for="file2">
                     写真その２
@@ -137,6 +142,7 @@
                     </div>
                 @endif
             </div>
+-->            
             <div class="form-group">
                 <label for="age">
                     年齢

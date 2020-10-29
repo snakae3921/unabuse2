@@ -16,6 +16,7 @@
               @if (session('err_msg'))
                 <p>{{ session('err_msg')}} 
                 </p>
+                <br>
               @endif
               <label for="target">どなたの</label>
               <b>
@@ -28,7 +29,7 @@
                   </div>
               @endif
               <br>
-              <input type="file" id="file" name="file[]" class="form-control" multiple>
+              <input type="file" id="file" name="file1" class="form-control" value="{{ old('file1') }}" >
               @if ($errors->has('file1'))
                   <div class="text-danger">
                   {{ $errors->first('file1') }}
@@ -46,6 +47,7 @@
                   </div>
               @endif
               <br>
+<!--
               <input type="file" id="file" name="file[]" class="form-control" multiple>
               @if ($errors->has('file2'))
                   <div class="text-danger">
@@ -63,6 +65,7 @@
                   {{ $errors->first('takeymd2') }}
                   </div>
               @endif
+-->
               <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showUpload') }}">
                     クリア
