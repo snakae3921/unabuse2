@@ -36,7 +36,7 @@
                   </div>
               @endif
               <br>
-              <label for="takeymd">写真１へコメント（撮影日時など）</label>
+              <label for="takeymd">写真のコメント（撮影日時など）</label>
               <b>
               <input id="takeymd1" name="takeymd1" class="form-control" value="{{ old('takeymd1') }}"
                       type="text" >

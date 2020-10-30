@@ -12,8 +12,8 @@
       <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
       <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
 
-      <span>投稿写真その１  <b>{{ $bruise->file1 }}</b>
-        <img src="/storage/300-300-{{$bruise->id}}{{$bruise->file1}}"
+      <span>投稿写真  <b>{{ $bruise->file1 }}</b>
+        <img src="{{ asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
           alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
           width="60" height="60" >
       </span><br>

@@ -16,11 +16,11 @@
       @endif
       <table class="table table-striped">
           <tr>
-              <th>#</th>
+              <th></th>
               <th>ユーザ</th>
               <th>投稿</th>
               <th>どなたの</th>
-              <th>写真のコメント</th>
+              <th>コメント</th>
               <th>年齢</th>
               <th>性別</th>
               <th>発生年</th>
@@ -33,7 +33,6 @@
               <td>:</td>
               <th>分</th>
               <th>部位</th>
-              <th>　　　　</th>
           </tr>
           @foreach($bruises as $bruise)
           <tr>
@@ -43,7 +42,8 @@
               <td><img src="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
                alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                width="60" height="60" ></td>
-              <td>{{ $bruise->target }}</td>
+               <td>{{ $bruise->target }}</td>
+               <td>{{ $bruise->takeymd1 }}</td>
               <td>{{ $bruise->age }}</td>
               <td>
               @if ($bruise->sex == 1)
