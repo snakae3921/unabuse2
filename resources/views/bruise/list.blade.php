@@ -40,7 +40,7 @@
           <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">付加</button></td>
 <!--              <td>{{ $bruise->id }}</td> -->
               <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
-              <td><img src="/storage/images/300-300-{{$bruise->id}}{{$bruise->file1}}"
+              <td><img src="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
                alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                width="60" height="60" ></td>
               <td>{{ $bruise->target }}</td>
