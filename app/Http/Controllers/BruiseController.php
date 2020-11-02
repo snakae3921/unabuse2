@@ -359,7 +359,9 @@ $str = __DIR__;
         // セッションへデータを保存する
         session()->put('id', $hid);
 
-return redirect(route('showUpload'));
+//return redirect(route('showUpload'));
+//\Session::flash('err_msg', 'ファイルをアップロードしました。');
+return redirect(route('showList'));
 
 //return redirect(route('rtnUpload', ['id' => $hid]));
 //return view('bruise.rtnUpload')->with('id',$hid);

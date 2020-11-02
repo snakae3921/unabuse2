@@ -10,14 +10,21 @@
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
       <span>ユーザ    <b>{{ $bruise->userid }}</b></span><br>
-      <span>どなたの    <b>{{ $bruise->target }}</b></span><br>
+      <span>だれの    <b>{{ $bruise->target }}</b></span><br>
 
-      <span>投稿写真  <b>{{ $bruise->file1 }}</b>
+      <span>投稿した写真  <b>{{ $bruise->file1 }}</b><br>
+<!--
         <img src="{{ asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
           alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
           width="60" height="60" >
+-->
+        <a href="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
+        <img src="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
+        alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
+        width="60" height="60" ></td>
+        </a>
       </span><br>
-        <span>コメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
+        <span>写真へのコメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
 <!--
         <span>投稿写真その２  <b>{{ $bruise->file2 }}</b></span><br>
         <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br>
