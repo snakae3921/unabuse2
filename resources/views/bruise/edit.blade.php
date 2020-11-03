@@ -79,8 +79,8 @@
                     alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                     width="60" height="60" >
 -->
-                    <a href="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
-                    <img src="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
+                    <a href="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
+                    <img src="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}"
                     alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                     width="60" height="60" ></td>
                     </a>
@@ -113,7 +113,6 @@
                     </div>
                 @endif
             </div>
--->
 <!--            
             <div class="form-group">
                 <label for="file2">

@@ -19,7 +19,7 @@
               <th></th>
               <th>ユーザ</th>
               <th>投稿</th>
-              <th>どなたの</th>
+              <th>だれの</th>
               <th>コメント</th>
               <th>年齢</th>
               <th>性別</th>
@@ -41,8 +41,8 @@
               <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
 
               <td>
-              <a href="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
-               <img src="{{asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
+              <a href="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group{{$bruise->id}}">
+               <img src="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}"
                alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                width="60" height="60" ></td>
                </a>

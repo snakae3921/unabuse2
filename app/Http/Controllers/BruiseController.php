@@ -320,7 +320,16 @@ class BruiseController extends Controller
 //                dd($bruise);
                 $bruise->save();
                 DB::commit();
+                //ユーザディレクトリの作成
+                $path = public_path(). '/storage/images/'.$huserid;
+//                dd($path);
+                if(!\File::exists($path)) {
+                    // path does not exist
+                    $rtn = \File::makeDirectory($path);
+//                    dd($rtn);
+                }
 
+//                dd($path);
                 //サムネイルの作成
                 $image = \Image::make(file_get_contents($files->getRealPath()));
 //                dd($image);
@@ -329,14 +338,14 @@ class BruiseController extends Controller
                     ->resize(300, 300)
 //                    ->save($dir.'/300-300-'.$fileName)
 //                    ->resize(500, 500)
-                    ->save(public_path().'/storage/images/300-300-'.$hid.$originalName);
+                    ->save($path.'/300-300-'.$hid.$originalName);
 //        dd($files);
 //$image::move(public_path().'/images/300-300-'.$hid.$originalName,
 //                public_path().'/images/300x-300x-'.$hid.$originalName);
 //                $dir.'/thumbnail/300-300-'.$hid.$originalName);
-$str = $dir.'/thumbnail/300-300-'.$hid.$originalName;
-$str = public_path().'/images/300-300-'.$hid.$originalName;
-$str = __DIR__;
+//$str = $dir.'/thumbnail/300-300-'.$hid.$originalName;
+//$str = public_path().'/images/300-300-'.$hid.$originalName;
+//$str = __DIR__;
 //dd($str);
 //rename(public_path().'/images/300-300-'.$hid.$originalName,
 //            '../');
@@ -352,7 +361,7 @@ $str = __DIR__;
                 DB::rollback();
                 abort(500);
             }
-            \Session::flash('err_msg', 'ファイルをアップロードしました。');
+            \Session::flash('err_msg', '写真を投稿しました。');
         }
 //        dd($files);
 
