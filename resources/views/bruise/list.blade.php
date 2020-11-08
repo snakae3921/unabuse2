@@ -51,7 +51,6 @@
                alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
                width="60" height="60" ></td>
 -->
-               <a href="gazou1.jpg" data-lightbox="group"><img src="gazou1.jpg" width="300"></a>
 
                <td>{{ $bruise->target }}</td>
                <td>{{ $bruise->takeymd1 }}</td>
