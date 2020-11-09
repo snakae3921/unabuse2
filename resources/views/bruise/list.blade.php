@@ -21,6 +21,7 @@
               <th>投稿</th>
               <th>だれの</th>
               <th>コメント</th>
+<!--
               <th>年齢</th>
               <th>性別</th>
               <th>発生年</th>
@@ -33,6 +34,7 @@
               <td>:</td>
               <th>分</th>
               <th>部位</th>
+-->
           </tr>
           @foreach($bruises as $bruise)
           <tr>
@@ -54,6 +56,7 @@
 
                <td>{{ $bruise->target }}</td>
                <td>{{ $bruise->takeymd1 }}</td>
+<!--               
               <td>{{ $bruise->age }}</td>
               <td>
               @if ($bruise->sex == 1)
@@ -104,6 +107,7 @@
                 15：臀部
               @endif
               </td>
+-->
           </tr>
           @endforeach
       </table>

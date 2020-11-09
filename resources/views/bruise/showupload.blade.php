@@ -18,6 +18,13 @@
                 </p>
                 <br>
               @endif
+              <input type="file" id="file" name="file1" class="form-control" value="{{ old('file1') }}" >
+              @if ($errors->has('file1'))
+                  <div class="text-danger">
+                  {{ $errors->first('file1') }}
+                  </div>
+              @endif
+              <br>
               <label for="target">だれの</label>
               <b>
               <input id="target" name="target" class="form-control" value="{{ old('target') }}"
@@ -26,13 +33,6 @@
               @if ($errors->has('target'))
                   <div class="text-danger">
                   {{ $errors->first('target') }}
-                  </div>
-              @endif
-              <br>
-              <input type="file" id="file" name="file1" class="form-control" value="{{ old('file1') }}" >
-              @if ($errors->has('file1'))
-                  <div class="text-danger">
-                  {{ $errors->first('file1') }}
                   </div>
               @endif
               <br>
