@@ -179,7 +179,7 @@
             </div>
             <div class="form-group">
                 <label for="sex">
-                    性別
+                    性別　
                 </label>
                 {{Form::select('sex', 
                 [
@@ -195,8 +195,37 @@
             </div>
             <div class="form-group">
                 <label for="hasseiyy">
-                    発生年
+                    発生年月日　
                 </label>
+
+                {{Form::select('hasseiyy', 
+                [
+                '',
+                '2010',
+                '2011',
+                '2012',
+                '2013',
+                '2014',
+                '2015',
+                '2016',
+                '2017',
+                '2018',
+                '2019',
+                '2020'
+                ], $bruise->hasseiyy)}}
+<!--
+                <select id="hasseiyy" class="form-control" name="hasseiyy">
+                @if ($bruise->hasseiyy == "") <option value="" selected></option>
+                    @for ($i = 0; $i <= 59; $i++)
+                    <option value="{{ $i }}"@if($bruise->hasseiyy == $i)  @endif>{{ $i }}</option>
+                    @endfor
+                @else <option value=""></option> 
+                    @for ($i = 0; $i <= 59; $i++)
+                    <option value="{{ $i }}"@if($bruise->hasseiyy == $i) selected @endif>{{ $i }}</option>
+                    @endfor
+                @endif
+                </select>
+
                 @if ($errors->any())
                     <input
                         id="hasseiyy"
@@ -221,9 +250,27 @@
                 @endif
             </div>
             <div class="form-group">
+-->
                 <label for="hasseimm">
-                    発生月
+                    /
                 </label>
+                {{Form::select('hasseimm', 
+                [
+                '',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12'
+                ], $bruise->hasseimm)}}
+<!--
                 @if ($errors->any())
                     <input
                         id="hasseimm"
@@ -246,11 +293,64 @@
                         {{ $errors->first('hasseimm') }}
                     </div>
                 @endif
-            </div>
-            <div class="form-group">
+-->
                 <label for="hasseidd">
-                    発生日
+                    /
                 </label>
+                {{Form::select('hasseidd', 
+                [
+                '',
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31'
+                ], $bruise->hasseidd)}}
+                @if ($errors->has('hasseiyy'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseiyy') }}
+                    </div>
+                @endif
+                @if ($errors->has('hasseimm'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseimm') }}
+                    </div>
+                @endif
+                @if ($errors->has('hasseidd'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseidd') }}
+                    </div>
+                @endif
+
+
+<!--
                 @if ($errors->any())
                     <input
                         id="hasseidd"
@@ -273,11 +373,91 @@
                         {{ $errors->first('hasseidd') }}
                     </div>
                 @endif
+-->
             </div>
             <div class="form-group">
                 <label for="hasseihh">
-                    発生時
+                    発生時間　　
                 </label>
+                {{Form::select('hasseihh', 
+                [
+                '',
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23'
+                ], $bruise->hasseihh)}}
+
+<!--
+
+                <select id="hasseihh" class="form-control" name="hasseihh">
+                value="{{ old('hasseidd') }}"
+
+                @if ($errors->any())
+                    @if (old('hasseihh') == "") <option value="" selected></option>
+                        @for ($i = 0; $i <= 23; $i++)
+                        <option value="{{ $i }}"@if(old('hasseihh') == $i) @endif>{{ $i }}</option>
+                        @endfor
+                    @else <option value=""></option> 
+                        @for ($i = 0; $i <= 23; $i++)
+                        <option value="{{ $i }}"@if(old('hasseihh') == $i) selected @endif>{{ $i }}</option>
+                        @endfor
+                    @endif
+                @else
+                    @if ($bruise->hasseihh == "") <option value="" selected></option>
+                        @for ($i = 0; $i <= 23; $i++)
+                        <option value="{{ $i }}"@if($bruise->hasseihh == $i) @endif>{{ $i }}</option>
+                        @endfor
+                    @else <option value=""></option> 
+                        @for ($i = 0; $i <= 23; $i++)
+                        <option value="{{ $i }}"@if($bruise->hasseihh == $i) selected @endif>{{ $i }}</option>
+                        @endfor
+                    @endif
+                @endif
+                </select>
+
+                @if ($errors->has('hasseihh'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseihh') }}
+                    </div>
+                @endif
+//
+
+            <div class="col-md-2">
+                <select id="birth_month" class="form-control" name="birth_month">
+                <option value="">--</option>
+                @for ($i = 1; $i <= 12; $i++)
+                <option value="{{ $i }}"@if(old('birth_month') == $i) selected @endif>{{ $i }}</option>
+                @endfor
+                </select>
+
+                @if ($errors->has('birth_month'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('birth_month') }}</strong>
+                    </span>
+                @endif
+            </div>
+
                 @if ($errors->any())
                     <input
                         id="hasseihh"
@@ -301,10 +481,105 @@
                     </div>
                 @endif
             </div>
-            <div class="form-group">
+    -->
                 <label for="hasseimi">
-                    発生分
-                </label>
+                ：
+                                </label>
+                {{Form::select('hasseimi', 
+                [
+                '',
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                '32',
+                '33',
+                '34',
+                '35',
+                '36',
+                '37',
+                '38',
+                '39',
+                '40',
+                '41',
+                '42',
+                '43',
+                '44',
+                '45',
+                '46',
+                '47',
+                '48',
+                '49',
+                '50',
+                '51',
+                '52',
+                '53',
+                '54',
+                '55',
+                '56',
+                '57',
+                '58',
+                '59'
+                ], $bruise->hasseimi)}}
+                @if ($errors->has('hasseihh'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseihh') }}
+                    </div>
+                @endif
+                @if ($errors->has('hasseimi'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseimi') }}
+                    </div>
+                @endif
+
+<!--
+
+                <select id="hasseimi" class="form-control" name="hasseimi">
+                @if ($bruise->hasseimi == "") <option value="" selected></option>
+                    @for ($i = 0; $i <= 59; $i++)
+                    <option value="{{ $i }}"@if($bruise->hasseimi == $i)  @endif>{{ $i }}</option>
+                    @endfor
+                @else <option value=""></option> 
+                    @for ($i = 0; $i <= 59; $i++)
+                    <option value="{{ $i }}"@if($bruise->hasseimi == $i) selected @endif>{{ $i }}</option>
+                    @endfor
+                @endif
+                </select>
+
+                @if ($errors->has('hasseimi'))
+                    <div class="text-danger">
+                        {{ $errors->first('hasseimi') }}
+                    </div>
+                @endif
+
                 @if ($errors->any())
                     <input
                         id="hasseimi"
@@ -327,6 +602,7 @@
                         {{ $errors->first('hasseimi') }}
                     </div>
                 @endif
+    -->
             </div>
             <div class="form-group">
                 <label for="factor">
@@ -357,7 +633,7 @@
             </div>
             <div class="form-group">
                 <label for="element">
-                    部位
+                    部位　
                 </label>
 
                 {{Form::select('element', 

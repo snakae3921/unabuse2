@@ -148,6 +148,7 @@ return [
         'target'        => 'どなたの',
         'age'           => '年齢',
         'sex'           => '性別',
+        'hasseiymd'     => '発生年月日',
         'hasseiyy'      => '発生年',
         'hasseimm'      => '発生月',
         'hasseidd'      => '発生日',

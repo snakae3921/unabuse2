@@ -270,7 +270,7 @@ class BruiseController extends Controller
 
         $validatedData = $request->validate([
             'target'        => 'nullable | string | max:100',
-            'file1'         => 'required | image | max:5120',
+            'file1'         => 'required | image | max:8192',
             'oimagename1'   => 'nullable | string',
             'takeymd1'      => 'nullable | string | max:125',
 //            'file2'         => 'nullable | image | max:512',
