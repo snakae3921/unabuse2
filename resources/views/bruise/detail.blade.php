@@ -25,6 +25,7 @@
         </a>
       </span><br>
         <span>写真へのコメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
+
 <!--
         <span>投稿写真その２  <b>{{ $bruise->file2 }}</b></span><br>
         <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br> -->
@@ -79,6 +80,23 @@
         <span>作成日    <b>{{ $bruise->created_at }}</b></span></br>
         <span>更新日    <b>{{ $bruise->updated_at }}</b></span></br>
         <span>
+        @if ($bruise->file2)
+          <br>
+          <br>
+          <h4><b>以下、ご参考までにお目通しください</b></h4>
+          <span>ご参考資料  <b>{{ $bruise->file2 }}</b><br>
+
+          <a href="{{asset('/storage/images/'. $bruise-> userid. '/'. $bruise->oimagename2 ) }}" data-lightbox="group">
+          <img src="{{asset('/storage/images/'. $bruise-> userid. '/'. $bruise->oimagename2) }}"
+          alt="{{$bruise->file2}}" title="{{$bruise->file2}}"
+          ></td>
+          </a>
+
+          </span><br>
+          <span>ご参考資料へのコメント  <b>{{ $bruise->takeymd2 }}</b></span><br>
+          <input type="button" value="プリント" onclick="window.print(); return false;" />
+          <a href="#" onclick="window.print(); return false;">印刷</a>
+        @endif
 <!--
             <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
               {{ csrf_field() }}

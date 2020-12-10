@@ -41,6 +41,7 @@
           <td><button type="button" class="btnbtn-primary" onclick="location.href='showEdit/{{ $bruise->id }}'">付加</button></td>
 <!--              <td>{{ $bruise->id }}</td> -->
               <td><a href="showDetail/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
+              <td><a href="mkPdf/{{$bruise->id}}">{{ $bruise->userid }}</a></td>
 
               <td>
               <a href="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group{{$bruise->id}}">
@@ -111,6 +112,7 @@
           </tr>
           @endforeach
       </table>
+      {{ $bruises->links() }}
   <div class="mt-5">
     <a class="btn btn-secondary" href="{{ route('showUpload') }}">
         もどる

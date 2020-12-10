@@ -33,9 +33,20 @@ class BruiseController extends Controller
          // テーブルを指定
         $bruises = DB::table('bruises');
 //        logger($user->name);    
-        $bruise = $bruises->where('userid', '=', $user->name)
-        ->orderBy('id', 'desc')
-        ->get();
+
+        // セッションへデータを保存する
+        session()->put('kbn', $user->kbn);
+
+        if ($user->kbn == 0){
+            $bruise = $bruises->where('userid', '=', $user->name)
+            ->orderBy('id', 'desc')
+            ->simplePaginate(10);
+
+        } else {
+            $bruise = $bruises
+            ->orderBy('id', 'desc')
+            ->simplePaginate(10);
+        }
 //        $bruises = Bruise::all();
 //        dd($bruises);
         return view('bruise.list', ['bruises'=>$bruise]);
@@ -62,9 +73,11 @@ class BruiseController extends Controller
         $user = \Auth::user();
         // url直節入力しての他のユーザの参照はできない
         if (!($user->name == $bruise->userid)) {
+            if (!session()->pull('kbn') == 1){
 //            logger('this is error');    
-            \Session::flash('err_msg','ユーザが正しくありません。');
-            return redirect(route('showList'));
+                \Session::flash('err_msg','ユーザが正しくありません。');
+                return redirect(route('showList'));
+            }
         }
 
         if (is_null($bruise)){
@@ -131,17 +144,21 @@ class BruiseController extends Controller
         $user = \Auth::user();
         // url直節入力しての他のユーザの参照はできない
         if (!($user->name == $bruise->userid)) {
+            if (!session()->pull('kbn') == 1){
 //            logger('this is error');    
-            \Session::flash('err_msg','ユーザが正しくありません。');
-            return redirect(route('showList'));
+                \Session::flash('err_msg','ユーザが正しくありません。');
+                return redirect(route('showList'));
+            }
         }
-//$bruise = $bruises::find($id);
-//dd($bruise);
+
+        $userkbn=$user->kbn;
+        session()->put('kbn', $userkbn);
+
         if (is_null($bruise)){
             \Session::flash('err_msg','データがありません。。');
             return redirect(route('showList'));
         }
-        return view('bruise.edit', ['bruise'=>$bruise]);
+        return view('bruise.edit', ['bruise'=>$bruise, 'kbn'=>$userkbn]);
     }
     /**
      * データ更新する
@@ -149,29 +166,86 @@ class BruiseController extends Controller
      * @return view
      * */
     public function exeUpdate(BruiseRequest $request){
-//        logger('this is exeUpdate');    
+
+        //セッションからkbnを取得する
+        $kbn = session()->pull('kbn', 'default');    
+//dd($kbn . ' 001');
+
+        //        logger('this is exeUpdate');    
         $inputs = $request->all();
 //dd($inputs);
         DB::beginTransaction();
         try {
             // データを更新
             $bruise = Bruise::find($inputs['id']);
-            $bruise->fill([
-                'userid'=>$inputs['userid'],
-                'target'=>$inputs['target'],
-                'age'   =>$inputs['age'],
-                'sex'   =>$inputs['sex'],
-                'hasseiyy' =>$inputs['hasseiyy'],
-                'hasseimm' =>$inputs['hasseimm'],
-                'hasseidd' =>$inputs['hasseidd'],
-                'hasseihh' =>$inputs['hasseihh'],
-                'hasseimi' =>$inputs['hasseimi'],
-                'factor'   =>$inputs['factor'],
-                'element'  =>$inputs['element'],
-                'note'     =>$inputs['note'],
-                'takeymd1'     =>$inputs['takeymd1'],
-//                'takeymd2'     =>$inputs['takeymd2'],
-            ]);
+            if  ($kbn == 1){   
+//dd($kbn . ' 002');
+                $bruise->fill([
+//                    'userid'=>$inputs['userid'],
+//                    'target'=>$inputs['target'],
+                    'age'   =>$inputs['age'],
+                    'sex'   =>$inputs['sex'],
+                    'hasseiyy' =>$inputs['hasseiyy'],
+                    'hasseimm' =>$inputs['hasseimm'],
+                    'hasseidd' =>$inputs['hasseidd'],
+                    'hasseihh' =>$inputs['hasseihh'],
+                    'hasseimi' =>$inputs['hasseimi'],
+                    'factor'   =>$inputs['factor'],
+//                    'element'  =>$inputs['element'],
+                    'note'     =>$inputs['note'],
+                    'takeymd1'     =>$inputs['takeymd1'],
+                ]);
+            } else {
+                $bruise->fill([
+                    'userid'=>$inputs['userid'],
+                    'target'=>$inputs['target'],
+                    'age'   =>$inputs['age'],
+                    'sex'   =>$inputs['sex'],
+                    'hasseiyy' =>$inputs['hasseiyy'],
+                    'hasseimm' =>$inputs['hasseimm'],
+                    'hasseidd' =>$inputs['hasseidd'],
+                    'hasseihh' =>$inputs['hasseihh'],
+                    'hasseimi' =>$inputs['hasseimi'],
+                    'factor'   =>$inputs['factor'],
+                    'element'  =>$inputs['element'],
+                    'note'     =>$inputs['note'],
+                    'takeymd1'     =>$inputs['takeymd1'],
+                ]);
+            }    
+            if ($kbn == 1) {
+//dd($kbn . ' 003');
+
+                $files = $inputs['file2'];
+                if (!is_null($files) && !$bruise->file2) {
+
+                    $hid =$inputs['id'];
+                    $huserid =$inputs['userid'];
+                    $htarget =$inputs['target'];
+                    $helement =$inputs['element'];
+                    $fname = 'rtn_'. $hid . '_' . $huserid . '_' . $htarget . '_' . $helement  . '_'; 
+//dd($fname);
+
+                    $originalName = $files->getClientOriginalName();
+                    $filepath= pathinfo($originalName);
+                    $originalFilename =$filepath['filename'];
+                    $originalExtension =$filepath['extension'];
+                    //dd($fileTail);
+
+                    $dir = 'public/images/'. $huserid;
+//dd($dir . ' x');
+                    $fileName = $fname . $originalFilename . '.' . $originalExtension;
+//                dd($dir);
+//dd($dir . ' xx');
+                    $files->storeAs($dir, $fileName, ['disk' => 'local']);
+//                dd($dir);
+//dd($dir . ' xxx');
+                    $bruise->fill([
+                        'file2'=>$originalName,
+                        'oimagename2'=>$fileName,
+                        'takeymd2'  =>$inputs['takeymd2'],
+                    ]);
+                }            
+            }            
             $bruise->save();
             DB::commit();
         } catch(\Throwable $e) {
@@ -330,33 +404,17 @@ class BruiseController extends Controller
                 }
 
 //                dd($path);
+//dd($files);
+//$mm=file_get_contents($files->getRealPath());
+//dd($mm);
+//$nn=$files->getRealPath();
+//dd($nn);
                 //サムネイルの作成
-                $image = \Image::make(file_get_contents($files->getRealPath()));
-//                dd($image);
-                $image
-//                    ->save($dir .$fileName)
-                    ->resize(300, 300)
-//                    ->save($dir.'/300-300-'.$fileName)
-//                    ->resize(500, 500)
-                    ->save($path.'/300-300-'.$hid.$originalName);
-//        dd($files);
-//$image::move(public_path().'/images/300-300-'.$hid.$originalName,
-//                public_path().'/images/300x-300x-'.$hid.$originalName);
-//                $dir.'/thumbnail/300-300-'.$hid.$originalName);
-//$str = $dir.'/thumbnail/300-300-'.$hid.$originalName;
-//$str = public_path().'/images/300-300-'.$hid.$originalName;
-//$str = __DIR__;
-//dd($str);
-//rename(public_path().'/images/300-300-'.$hid.$originalName,
-//            '../');
-//'../../../storage/app/upFiles/thumbnail/300-300-'.$hid.$originalName);
-//public_path().'/images/300x-300x-'.$hid.$originalName);
-   
-
-//        dd($files);
-
-
-
+                // 画像を横幅300px・縦幅アスペクト比維持の自動サイズへリサイズ
+                $image = \Image::make(file_get_contents($files->getRealPath()))
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio(); })
+                ->save($path.'/300-300-'.$hid.$originalName);
             } catch(\Throwable $e) {
                 DB::rollback();
                 abort(500);
@@ -368,12 +426,7 @@ class BruiseController extends Controller
         // セッションへデータを保存する
         session()->put('id', $hid);
 
-//return redirect(route('showUpload'));
-//\Session::flash('err_msg', 'ファイルをアップロードしました。');
-return redirect(route('showList'));
-
-//return redirect(route('rtnUpload', ['id' => $hid]));
-//return view('bruise.rtnUpload')->with('id',$hid);
+        return redirect(route('showList'));
     }
 
 /**
@@ -389,14 +442,115 @@ return redirect(route('showList'));
                 $user = \Auth::user();
                 //dd($user);
                 $username=$user->name;
-                //セッションからidを取得する
-                $id = session()->pull('id', 'default');    
-                $bruise = Bruise::find($id);
-//                return view('bruise.showUpload')->with('username',$username,);
-                return view('bruise.showUpload')->with('username',$username,'bruise',$bruise,);
+                $userkbn=$user->kbn;
+                // セッションへデータを保存する
+                session()->put('kbn', $userkbn);
+
+                //セッションにidを取得する
+//                $id = session()->pull('id', 'default');    
+//                $bruise = Bruise::find($id);
+                return view('bruise.showUpload')->with('username',$username,);
+//                return view('bruise.showUpload')->with('username',$username,'bruise',$bruise,);
             }
 
-/**
+
+
+     /**
+     * PDFを作成する
+     * 
+     * @return view
+     * */
+    public function mkPdf($id){
+
+//        $pdf = PDF::loadHTML('<h1>Hello World</h1>');
+//        return $pdf->stream();
+
+        
+        $bruise = Bruise::find($id);
+        //$bruises = DB::table('bruises');
+        //$bruise = bruises::find($id);
+            
+        // セッションへデータを保存する
+        if (!session()->has('id')) {
+        // 存在しないnullだ
+            session()->put('id', $id);
+        }
+            
+        $user = \Auth::user();
+        // url直節入力しての他のユーザの参照はできない
+        if (!($user->name == $bruise->userid)) {
+//            logger('this is error');    
+            \Session::flash('err_msg','ユーザが正しくありません。');
+            return redirect(route('showList'));
+        }
+//        dd($bruise);
+            
+        if (is_null($bruise)){
+            \Session::flash('err_msg','データがありません。');
+            return redirect(route('showList'));
+        }
+//        return view('bruise.detail', ['bruise'=>$bruise]);
+
+//        $pdf = \PDF::loadView('bruise.mkPdf',['bruise'=>$bruise]);
+//        $pdf = \PDF::loadHTML('<h1>Hello World</h1>');
+//dd($pdf);
+//dd($bruise);
+
+$url = asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1);
+//////
+include "../../../php/pear/TCPDF/tcpdf.php"; // include_path配下に設置したtcpdf.phpを読み込む
+ 
+$tcpdf = new \TCPDF();
+$tcpdf->AddPage(); // 新しいpdfページを追加
+ 
+$tcpdf->SetFont("kozgopromedium", "", 10); // デフォルトで用意されている日本語フォント
+ 
+$html = <<< EOF
+<style>
+h1 {
+    font-size: 24px; // 文字の大きさ
+    color: #ff00ff; // 文字の色
+    text-align: center; // テキストを真ん中に寄せる
+}
+p {
+    font-size: 12px; // 文字の大きさ
+    color: #000000; // 文字の色
+    text-align: left; // テキストを左に寄せる
+}
+</style>
+<h1>侍エンジニア塾</h1>
+<p>
+今日は侍エンジニア塾についてお話させていただきます。
+</p>
+<br>
+<img src="<?php$url?>">
+
+
+<br>
+EOF;
+ 
+$tcpdf->writeHTML($html); // 表示htmlを設定
+//$tcpdf->Output('samurai.pdf', 'I'); // pdf表示設定
+$tcpdf->Output('samurai.pdf', 'D'); // pdfダウンロード
+/////
+
+
+$pdf = \PDF::loadView('bruise.mkPdf', ['bruise'=>$bruise]);
+return $pdf->stream('bruise_aiueo.pdf');
+
+
+//    	return $pdf->stream();
+        
+//        return $pdf->stream('test01.pdf');
+
+
+//        return $pdf->download('test01.pdf');
+
+    }
+        
+
+
+            /**
      * 投稿正常終了結果を表示する
      * 
      * @return view

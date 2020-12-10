@@ -9,7 +9,7 @@
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
-        <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()">
+        <form method="POST" action="{{ route('update') }}" onSubmit="return checkSubmit()" enctype="multipart/form-data">
         @csrf
             <input type="hidden" name="id" value="{{ $bruise->id }}" >
             <div class="form-group">
@@ -707,7 +707,33 @@
                     </div>
                 @endif
             </div>
-            
+
+            @if ($kbn == 1)
+                <div class="form-group">
+                <label for="dmy">結果登録用</label>
+                </div>
+                <div class="form-group">
+                <input type="file" id="file" name="file2" class="form-control" value="{{ old('file2') }}" >
+                @if ($errors->has('file2'))
+                    <div class="text-danger">
+                    {{ $errors->first('file2') }}
+                    </div>
+                @endif
+                </div>
+                <div class="form-group">
+                <label for="takeymd">写真へのコメント（撮影日時など）</label>
+                <b>
+                <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
+                        type="text" >
+                </b>
+                @if ($errors->has('takeymd2'))
+                    <div class="text-danger">
+                    {{ $errors->first('takeymd2') }}
+                    </div>
+                @endif
+                </div>
+            @endif
+
             <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showList') }}">
                     もどる
