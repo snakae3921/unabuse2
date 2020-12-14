@@ -125,13 +125,6 @@
             </div>
 
                 <input type="file" id="file" name="file" class="form-control" multiple>
-            <!--
-                <input type="hidden" name="hid" value="{{ $bruise->id }}">
-                <input type="hidden" name="huserid" value="{{ $bruise->userid }}">
-                <input type="hidden" name="htarget" value="{{ $bruise->target }}">
-                <input type="hidden" name="helement" value="{{ $bruise->element }}">
-                <button type="submit">アップロード</button>
--->
             <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showDetail') }}">
                     キャンセル

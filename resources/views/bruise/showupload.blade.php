@@ -47,25 +47,6 @@
                   </div>
               @endif
               <br>
-<!--
-              <input type="file" id="file" name="file[]" class="form-control" multiple>
-              @if ($errors->has('file2'))
-                  <div class="text-danger">
-                  {{ $errors->first('file2') }}
-                  </div>
-              @endif
-              <br>
-              <label for="takeymd">写真２へコメント（撮影日時など）</label>
-              <b>
-              <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
-                      type="text" >
-              </b>
-              @if ($errors->has('takeymd2'))
-                  <div class="text-danger">
-                  {{ $errors->first('takeymd2') }}
-                  </div>
-              @endif
--->
               <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showUpload') }}">
                     クリア

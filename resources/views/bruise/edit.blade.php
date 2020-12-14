@@ -74,11 +74,6 @@
                 <label for="file1">
                 {{ $bruise->file1 }}
                 </label></b><br>
-<!--                
-                    <img src="{{ asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
-                    alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
-                    width="60" height="60" >
--->
                     <a href="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
                     <img src="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}"
                     alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
@@ -113,43 +108,6 @@
                     </div>
                 @endif
             </div>
-<!--            
-            <div class="form-group">
-                <label for="file2">
-                    写真その２
-                </label><br><b>
-                <label for="file2">
-                {{ $bruise->file2 }}
-                </label></b>
-            </div>
-            <div class="form-group">
-                <label for="takeymd2">
-                コメント（撮影日時など）
-                </label>
-                @if ($errors->any())
-                    <input
-                        id="takeymd2"
-                        name="takeymd2"
-                        class="form-control"
-                        value="{{ old('takeymd2') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="takeymd2"
-                        name="takeymd2"
-                        class="form-control"
-                        value="{{ $bruise->takeymd2 }}"
-                        type="text"
-                    >
-                @endif
-                @if ($errors->has('takeymd2'))
-                    <div class="text-danger">
-                        {{ $errors->first('takeymd2') }}
-                    </div>
-                @endif
-            </div>
--->            
             <div class="form-group">
                 <label for="age">
                     年齢
@@ -213,44 +171,6 @@
                 '2019',
                 '2020'
                 ], $bruise->hasseiyy)}}
-<!--
-                <select id="hasseiyy" class="form-control" name="hasseiyy">
-                @if ($bruise->hasseiyy == "") <option value="" selected></option>
-                    @for ($i = 0; $i <= 59; $i++)
-                    <option value="{{ $i }}"@if($bruise->hasseiyy == $i)  @endif>{{ $i }}</option>
-                    @endfor
-                @else <option value=""></option> 
-                    @for ($i = 0; $i <= 59; $i++)
-                    <option value="{{ $i }}"@if($bruise->hasseiyy == $i) selected @endif>{{ $i }}</option>
-                    @endfor
-                @endif
-                </select>
-
-                @if ($errors->any())
-                    <input
-                        id="hasseiyy"
-                        name="hasseiyy"
-                        class="form-control"
-                        value="{{ old('hasseiyy') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="hasseiyy"
-                        name="hasseiyy"
-                        class="form-control"
-                        value="{{ $bruise->hasseiyy }}"
-                        type="text"
-                    >
-                @endif
-                @if ($errors->has('hasseiyy'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseiyy') }}
-                    </div>
-                @endif
-            </div>
-            <div class="form-group">
--->
                 <label for="hasseimm">
                     /
                 </label>
@@ -270,30 +190,6 @@
                 '11',
                 '12'
                 ], $bruise->hasseimm)}}
-<!--
-                @if ($errors->any())
-                    <input
-                        id="hasseimm"
-                        name="hasseimm"
-                        class="form-control"
-                        value="{{ old('hasseimm') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="hasseimm"
-                        name="hasseimm"
-                        class="form-control"
-                        value="{{ $bruise->hasseimm }}"
-                        type="text"
-                    >
-                @endif
-                @if ($errors->has('hasseimm'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseimm') }}
-                    </div>
-                @endif
--->
                 <label for="hasseidd">
                     /
                 </label>
@@ -347,32 +243,6 @@
                         {{ $errors->first('hasseidd') }}
                     </div>
                 @endif
-
-
-<!--
-                @if ($errors->any())
-                    <input
-                        id="hasseidd"
-                        name="hasseidd"
-                        class="form-control"
-                        value="{{ old('hasseidd') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="hasseidd"
-                        name="hasseidd"
-                        class="form-control"
-                        value="{{ $bruise->hasseidd }}"
-                        type="text"
-                    >
-                @endif    
-                @if ($errors->has('hasseidd'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseidd') }}
-                    </div>
-                @endif
--->
             </div>
             <div class="form-group">
                 <label for="hasseihh">
@@ -406,81 +276,6 @@
                 '22',
                 '23'
                 ], $bruise->hasseihh)}}
-
-<!--
-
-                <select id="hasseihh" class="form-control" name="hasseihh">
-                value="{{ old('hasseidd') }}"
-
-                @if ($errors->any())
-                    @if (old('hasseihh') == "") <option value="" selected></option>
-                        @for ($i = 0; $i <= 23; $i++)
-                        <option value="{{ $i }}"@if(old('hasseihh') == $i) @endif>{{ $i }}</option>
-                        @endfor
-                    @else <option value=""></option> 
-                        @for ($i = 0; $i <= 23; $i++)
-                        <option value="{{ $i }}"@if(old('hasseihh') == $i) selected @endif>{{ $i }}</option>
-                        @endfor
-                    @endif
-                @else
-                    @if ($bruise->hasseihh == "") <option value="" selected></option>
-                        @for ($i = 0; $i <= 23; $i++)
-                        <option value="{{ $i }}"@if($bruise->hasseihh == $i) @endif>{{ $i }}</option>
-                        @endfor
-                    @else <option value=""></option> 
-                        @for ($i = 0; $i <= 23; $i++)
-                        <option value="{{ $i }}"@if($bruise->hasseihh == $i) selected @endif>{{ $i }}</option>
-                        @endfor
-                    @endif
-                @endif
-                </select>
-
-                @if ($errors->has('hasseihh'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseihh') }}
-                    </div>
-                @endif
-//
-
-            <div class="col-md-2">
-                <select id="birth_month" class="form-control" name="birth_month">
-                <option value="">--</option>
-                @for ($i = 1; $i <= 12; $i++)
-                <option value="{{ $i }}"@if(old('birth_month') == $i) selected @endif>{{ $i }}</option>
-                @endfor
-                </select>
-
-                @if ($errors->has('birth_month'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('birth_month') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-                @if ($errors->any())
-                    <input
-                        id="hasseihh"
-                        name="hasseihh"
-                        class="form-control"
-                        value="{{ old('hasseihh') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="hasseihh"
-                        name="hasseihh"
-                        class="form-control"
-                        value="{{ $bruise->hasseihh }}"
-                        type="text"
-                    >
-                @endif
-                @if ($errors->has('hasseihh'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseihh') }}
-                    </div>
-                @endif
-            </div>
-    -->
                 <label for="hasseimi">
                 ：
                                 </label>
@@ -558,50 +353,6 @@
                         {{ $errors->first('hasseimi') }}
                     </div>
                 @endif
-
-<!--
-
-                <select id="hasseimi" class="form-control" name="hasseimi">
-                @if ($bruise->hasseimi == "") <option value="" selected></option>
-                    @for ($i = 0; $i <= 59; $i++)
-                    <option value="{{ $i }}"@if($bruise->hasseimi == $i)  @endif>{{ $i }}</option>
-                    @endfor
-                @else <option value=""></option> 
-                    @for ($i = 0; $i <= 59; $i++)
-                    <option value="{{ $i }}"@if($bruise->hasseimi == $i) selected @endif>{{ $i }}</option>
-                    @endfor
-                @endif
-                </select>
-
-                @if ($errors->has('hasseimi'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseimi') }}
-                    </div>
-                @endif
-
-                @if ($errors->any())
-                    <input
-                        id="hasseimi"
-                        name="hasseimi"
-                        class="form-control"
-                        value="{{ old('hasseimi') }}"
-                        type="text"
-                    >
-                @else
-                    <input
-                        id="hasseimi"
-                        name="hasseimi"
-                        class="form-control"
-                        value="{{ $bruise->hasseimi }}"
-                        type="text"
-                    >
-                @endif
-                @if ($errors->has('hasseimi'))
-                    <div class="text-danger">
-                        {{ $errors->first('hasseimi') }}
-                    </div>
-                @endif
-    -->
             </div>
             <div class="form-group">
                 <label for="factor">
@@ -661,25 +412,6 @@
                     </div>
                 @endif
             </div>
-<!--            
-            <div class="form-group">
-                <label for="targetfile">
-                    写真
-                </label>
-                <input
-                    id="targetfile"
-                    name="targetfile"
-                    class="form-control"
-                    value="{{ $bruise->targetfile }}"
-                    type="text"
-                >
-                @if ($errors->has('targetfile'))
-                    <div class="text-danger">
-                        {{ $errors->first('targetfile') }}
-                    </div>
-                @endif
-            </div>
--->
             <div class="form-group">
                 <label for="note">
                     メモ
@@ -751,11 +483,11 @@
 </div>
 <script>
 function checkSubmit(){
-if(window.confirm('更新してよろしいですか？')){
-    return true;
-} else {
-    return false;
-}
+    if(window.confirm('更新してよろしいですか？')){
+        return true;
+    } else {
+        return false;
+    }
 }
 </script>
 @endsection

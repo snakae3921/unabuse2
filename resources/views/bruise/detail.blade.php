@@ -13,11 +13,6 @@
       <span>だれの    <b>{{ $bruise->target }}</b></span><br>
 
       <span>投稿した写真  <b>{{ $bruise->file1 }}</b><br>
-<!--
-        <img src="{{ asset('/storage/images/300-300-'. $bruise->id. $bruise->file1) }}"
-          alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
-          width="60" height="60" >
--->
         <a href="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}" data-lightbox="group">
         <img src="{{asset('/storage/images/'. $bruise->userid. '/300-300-'. $bruise->id. $bruise->file1) }}"
         alt="{{$bruise->file1}}" title="{{$bruise->file1}}"
@@ -25,10 +20,6 @@
         </a>
       </span><br>
         <span>写真へのコメント（撮影日時など）  <b>{{ $bruise->takeymd1 }}</b></span><br>
-
-<!--
-        <span>投稿写真その２  <b>{{ $bruise->file2 }}</b></span><br>
-        <span>コメント（撮影日時など）<b>{{ $bruise->takeymd2 }}</b></span><br> -->
 
       <span>年齢    <b>{{ $bruise->age }}</b></span>
         <span>性別    <b>
@@ -75,7 +66,6 @@
                 15：臀部
               @endif
               </b></span><br>
-<!--        <span>写真  <b>{{ $bruise->targetfile }}</b></span><br> -->
         <span>メモ    <b>{{ $bruise->note }}</b></span><br>
         <span>作成日    <b>{{ $bruise->created_at }}</b></span></br>
         <span>更新日    <b>{{ $bruise->updated_at }}</b></span></br>
@@ -97,43 +87,6 @@
           <input type="button" value="プリント" onclick="window.print(); return false;" />
           <a href="#" onclick="window.print(); return false;">印刷</a>
         @endif
-<!--
-            <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
-              {{ csrf_field() }}
-              <input type="file" id="file" name="file[]" class="form-control" multiple>
-        
-              <label for="takeymd">撮影日時１</label>
-              <b>
-              <input id="takeymd1" name="takeymd1" class="form-control" value="{{ old('takeymd1') }}"
-                      type="text" >
-              </b>
-              @if ($errors->has('takeymd1'))
-                  <div class="text-danger">
-                  {{ $errors->first('takeymd1') }}
-                  </div>
-              @endif
-              <br>
-              <input type="file" id="file" name="file[]" class="form-control" multiple>
-              <label for="takeymd">撮影日時２</label>
-              <b>
-              <input id="takeymd2" name="takeymd2" class="form-control" value="{{ old('takeymd2') }}"
-                      type="text" >
-              </b>
-              @if ($errors->has('takeymd2'))
-                  <div class="text-danger">
-                  {{ $errors->first('takeymd2') }}
-                  </div>
-              @endif
-              <div class="mt-5">
-                <a class="btn btn-secondary" href="{{ route('showUpload') }}">
-                    キャンセル
-                </a>
-                <button type="submit" class="btn btn-primary">
-                    更新する
-                </button>
-              </div>
-            </form>
--->
               <div class="mt-5">
                 <a class="btn btn-secondary" href="{{ route('showList') }}">
                     もどる
