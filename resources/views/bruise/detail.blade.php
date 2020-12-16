@@ -79,7 +79,7 @@
           <a href="{{asset('/storage/images/'. $bruise-> userid. '/'. $bruise->oimagename2 ) }}" data-lightbox="group">
           <img src="{{asset('/storage/images/'. $bruise-> userid. '/'. $bruise->oimagename2) }}"
           alt="{{$bruise->file2}}" title="{{$bruise->file2}}"
-          ></td>
+          >
           </a>
 
           </span><br>

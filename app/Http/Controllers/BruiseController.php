@@ -346,7 +346,9 @@ class BruiseController extends Controller
                 $micro = explode(" ", microtime());
                 $fileTail = date("Ymd_His", $micro[1]) . '_' . (explode('.', $micro[0])[1]);
 
-                $dir = 'upFiles';
+//$dir = 'upFiles';
+                $dir = 'public/images';
+//        dd($dir);
                 $fileName = $fname . $originalFilename . '_' . $fileTail . '.' . $originalExtension;
                 $files->storeAs($dir, $fileName, ['disk' => 'local']);
 
