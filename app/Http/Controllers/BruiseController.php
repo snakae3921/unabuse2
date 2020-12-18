@@ -155,10 +155,17 @@ class BruiseController extends Controller
      * */
     public function exeUpdate(BruiseRequest $request){
 
-        //セッションからkbnを取得する
-        $kbn = session()->pull('kbn', 'default');    
-
-        //        logger('this is exeUpdate');    
+        //ユーザ情報よりセッションをセットする
+        $user = \Auth::user();
+        $kbn=$user->kbn;
+        session()->put('kbn', $kbn);
+        if  ($kbn == 1){   
+            $validatedData = $request->validate([
+            'file2'         => 'required | image | max:8192',
+            'takeymd2'      => 'nullable | string | max:125',
+            ]);
+        }        
+        
         $inputs = $request->all();
         DB::beginTransaction();
         try {
@@ -179,6 +186,9 @@ class BruiseController extends Controller
 //                    'element'  =>$inputs['element'],
                     'note'     =>$inputs['note'],
                     'takeymd1'     =>$inputs['takeymd1'],
+//                    'file2'=>$inputs['file2'],
+//                    'oimagename2'=>$inputs['oimagename2'],
+//                    'takeymd2'  =>$inputs['takeymd2'],
                 ]);
             } else {
                 $bruise->fill([
