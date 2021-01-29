@@ -38,6 +38,8 @@ Route::post('/insert', [App\Http\Controllers\BruiseController::class, 'exeInsert
 
 //　打ち身編集画面を表示
 Route::get('/showEdit/{id}', [App\Http\Controllers\BruiseController::class, 'showEdit'])->name('showEdit');
+//　打ち身編集画面のIDを決定してリダイレクト
+Route::get('/showEditId', [App\Http\Controllers\BruiseController::class, 'showEditId'])->name('showEditId');
 
 //　打ち身登録
 Route::post('/update', [App\Http\Controllers\BruiseController::class, 'exeUpdate'])->name('update');

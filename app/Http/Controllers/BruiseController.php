@@ -391,7 +391,11 @@ class BruiseController extends Controller
         // セッションへデータを保存する
         session()->put('id', $hid);
 
-        return redirect(route('showList'));
+        // 二重送信対策
+//        $request->session()->regenerateToken();
+
+//        return redirect(route('showList'));
+        return redirect(route('showUpload'));
     }
 
 /**
@@ -400,16 +404,34 @@ class BruiseController extends Controller
      * @return view
      * */
     public function showUpload(){
-                $user = \Auth::user();
-                $username=$user->name;
-                $userkbn=$user->kbn;
-                // セッションへデータを保存する
-                session()->put('kbn', $userkbn);
+        $user = \Auth::user();
+        $username=$user->name;
+        $userkbn=$user->kbn;
+        // セッションへデータを保存する
+        session()->put('kbn', $userkbn);
 
-                //セッションにidを取得する
-                return view('bruise.showUpload')->with('username',$username,);
-            }
-     /**
+        //セッションからidを取得する
+        $id = session()->pull('id', 0);    
+
+        //セッションにidを取得する
+        return view('bruise.showUpload')->with('username',$username,);
+    }
+
+/**
+     * 
+     * 
+     * @return view
+     * */
+    public function showEditId(){
+        $user = \Auth::user();
+        $bruise = Bruise::find($user);
+        $maxBruiseId = Bruise::max('id');
+
+//        return redirect('showEdit/{{ $maxBruiseId }}');
+        return redirect()->route('showEdit', ['id' => $maxBruiseId]);
+    }
+
+    /**
      * PDFを作成する
      * 
      * @return view

@@ -5,7 +5,6 @@
 <header>
 @include('header')
 </header>
-
 <div class="container-fluid">
 <div class="row justify-content-center">
 <div class="col-md-8 col-md-offset-2">
@@ -14,9 +13,10 @@
             <form method="POST" action="{{ route('insUpload') }}" enctype="multipart/form-data">
               {{ csrf_field() }}
               @if (session('err_msg'))
-                <p>{{ session('err_msg')}} 
+                <p>{{ session('err_msg')}}　　　 
+                <a href="showEditId">写真の詳細を設定する</a>
                 </p>
-                <br>
+                続けて投稿するなら次の写真を選択して下さい
               @endif
               <input type="file" id="file" name="file1" class="form-control" value="{{ old('file1') }}" >
               @if ($errors->has('file1'))
